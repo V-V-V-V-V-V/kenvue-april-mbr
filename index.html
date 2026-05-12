@@ -222,6 +222,28 @@ table.report tr:last-child td{border-bottom:none}
 .cr-modal-stat{background:#fafaf8;border:1px solid #f0efe8;border-radius:6px;padding:8px 10px}
 .cr-modal-stat .l{font-size:9px;letter-spacing:.4px;text-transform:uppercase;color:#9b9b96;font-weight:600}
 .cr-modal-stat .v{font-size:16px;font-weight:700;color:#1a1a1a;line-height:1.2;font-variant-numeric:tabular-nums;margin-top:3px}
+
+/* Benchmark styles */
+.bm-bar{display:flex;align-items:center;gap:10px;background:#fafaf8;border:1px solid #f0efe8;border-radius:8px;padding:10px 14px;margin:12px 0}
+.bm-bar .bm-label{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#9b9b96;white-space:nowrap}
+.bm-bar .bm-items{display:flex;flex-wrap:wrap;gap:16px;flex:1}
+.bm-item{display:flex;flex-direction:column;gap:2px}
+.bm-item .bi-ch{font-size:9px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:#6b6b66}
+.bm-item .bi-val{font-size:12px;font-weight:600;color:#9b9b96;font-variant-numeric:tabular-nums}
+.bm-item .bi-ours{font-size:12px;font-weight:700;color:#00754a;font-variant-numeric:tabular-nums}
+.bm-item .bi-delta{font-size:9px;color:#00754a;font-weight:600;letter-spacing:.2px}
+.bm-callout{background:linear-gradient(135deg,#eff7ee,#f4faf2);border:1px solid #cae8c4;border-radius:10px;padding:14px 18px;margin:12px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.bm-col .bm-col-head{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#00754a;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #cae8c4}
+.bm-row{display:flex;justify-content:space-between;align-items:baseline;padding:3px 0;border-bottom:1px solid rgba(0,118,74,0.08)}
+.bm-row:last-child{border-bottom:none}
+.bm-row .bm-metric{font-size:11px;color:#555;font-weight:500}
+.bm-row .bm-bench{font-size:11px;color:#9b9b96;font-variant-numeric:tabular-nums}
+.bm-row .bm-ours{font-size:11px;font-weight:700;color:#00754a;font-variant-numeric:tabular-nums}
+.bm-tag-beat{display:inline-block;font-size:9px;font-weight:700;background:#00a651;color:#fff;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:middle;letter-spacing:.3px}
+.bm-tag-watch{display:inline-block;font-size:9px;font-weight:700;background:#ef9f27;color:#fff;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:middle;letter-spacing:.3px}
+table.report td .bm-chip{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;white-space:nowrap;vertical-align:middle;margin-left:4px}
+table.report td .bm-chip.beat{background:#e1f5ee;color:#00754a}
+table.report td .bm-chip.watch{background:#faeeda;color:#854f0b}
 </style>
 </head>
 <body>
@@ -240,8 +262,8 @@ table.report tr:last-child td{border-bottom:none}
     <div class="kpi"><div class="l">Total Spend</div><div class="v">$87,105</div><div class="s">Across 5 channels</div></div>
     <div class="kpi"><div class="l">Impressions</div><div class="v">62.5M</div><div class="s">25.7M unique reach (Meta)</div></div>
     <div class="kpi"><div class="l">Clicks</div><div class="v">1.83M</div><div class="s">Career-content visits</div></div>
-    <div class="kpi"><div class="l">CTR</div><div class="v">2.93%</div><div class="s g">~3× EB benchmark</div></div>
-    <div class="kpi"><div class="l">Blended CPC</div><div class="v">$0.048</div><div class="s g">Highly efficient</div></div>
+    <div class="kpi"><div class="l">CTR</div><div class="v">2.93%</div><div class="s g">Benchmark: 0.6–1.2% · 2.4× above</div></div>
+    <div class="kpi"><div class="l">Blended CPC</div><div class="v">$0.048</div><div class="s g">Benchmark: $0.30–$0.80 · 6–17× below</div></div>
     <div class="kpi"><div class="l">Apply Starts</div><div class="v">1,078</div><div class="s">Google + LinkedIn (passive)</div></div>
   </div>
 
@@ -466,14 +488,14 @@ table.report tr:last-child td{border-bottom:none}
     <div class="section-title">Channel performance</div>
     <div style="overflow-x:auto">
       <table class="report">
-        <thead><tr><th>Channel</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Applies</th><th>Strategic role</th></tr></thead>
+        <thead><tr><th>Channel</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CTR Benchmark</th><th class="num">CPC</th><th class="num">CPC Benchmark</th><th class="num">Applies</th><th>Role</th></tr></thead>
         <tbody>
-          <tr><td><strong>Meta</strong></td><td class="num">$28,013</td><td class="num">35.9M</td><td class="num">423K</td><td class="num">1.18%</td><td class="num">$0.066</td><td class="num">—</td><td><span class="pill pill-green">Reach &amp; awareness</span></td></tr>
-          <tr><td><strong>Google Display</strong></td><td class="num">$23,304</td><td class="num">19.3M</td><td class="num"><strong>1.30M</strong></td><td class="num" style="color:#00754a"><strong>6.74%</strong></td><td class="num" style="color:#00754a"><strong>$0.018</strong></td><td class="num">150</td><td><span class="pill pill-green">Click volume</span></td></tr>
-          <tr><td><strong>LinkedIn</strong></td><td class="num">$20,329</td><td class="num">6.0M</td><td class="num">70K</td><td class="num">1.17%</td><td class="num">$0.289</td><td class="num">6</td><td><span class="pill pill-blue">Professional precision</span></td></tr>
-          <tr><td><strong>Google Search</strong></td><td class="num">$9,948</td><td class="num">469K</td><td class="num">31K</td><td class="num" style="color:#00754a">6.36%</td><td class="num">$0.320</td><td class="num"><strong>922</strong></td><td><span class="pill pill-blue">High intent</span></td></tr>
-          <tr><td><strong>Bing</strong></td><td class="num">$5,511</td><td class="num">718K</td><td class="num">4.9K</td><td class="num">0.69%</td><td class="num">$1.120</td><td class="num">—</td><td><span class="pill pill-amber">Reach extension</span></td></tr>
-          <tr class="total-row"><td>Total</td><td class="num">$87,105</td><td class="num">62.5M</td><td class="num">1.83M</td><td class="num">2.93%</td><td class="num">$0.048</td><td class="num">1,078</td><td></td></tr>
+          <tr><td><strong>Meta</strong></td><td class="num">$28,013</td><td class="num">35.9M</td><td class="num">423K</td><td class="num">1.18%</td><td class="num" style="color:#9b9b96">0.5–1.2%<span class="bm-chip beat">AT</span></td><td class="num">$0.066</td><td class="num" style="color:#9b9b96">$1.50–$3.50<span class="bm-chip beat">96% below</span></td><td class="num">—</td><td><span class="pill pill-green">Reach &amp; awareness</span></td></tr>
+          <tr><td><strong>Google Display</strong></td><td class="num">$23,304</td><td class="num">19.3M</td><td class="num"><strong>1.30M</strong></td><td class="num" style="color:#00754a"><strong>6.74%</strong></td><td class="num" style="color:#9b9b96">0.35–0.60%<span class="bm-chip beat">11× above</span></td><td class="num" style="color:#00754a"><strong>$0.018</strong></td><td class="num" style="color:#9b9b96">$0.75–$2.00<span class="bm-chip beat">98% below</span></td><td class="num">150</td><td><span class="pill pill-green">Click volume</span></td></tr>
+          <tr><td><strong>LinkedIn</strong></td><td class="num">$20,329</td><td class="num">6.0M</td><td class="num">70K</td><td class="num">1.17%</td><td class="num" style="color:#9b9b96">0.39–0.60%<span class="bm-chip beat">2× above</span></td><td class="num">$0.289</td><td class="num" style="color:#9b9b96">$6–$12<span class="bm-chip beat">95% below</span></td><td class="num">6</td><td><span class="pill pill-blue">Professional precision</span></td></tr>
+          <tr><td><strong>Google Search</strong></td><td class="num">$9,948</td><td class="num">469K</td><td class="num">31K</td><td class="num" style="color:#00754a">6.36%</td><td class="num" style="color:#9b9b96">4–8%<span class="bm-chip beat">IN</span></td><td class="num">$0.320</td><td class="num" style="color:#9b9b96">$1.50–$4.00<span class="bm-chip beat">79% below</span></td><td class="num"><strong>922</strong></td><td><span class="pill pill-blue">High intent</span></td></tr>
+          <tr><td><strong>Bing</strong></td><td class="num">$5,511</td><td class="num">718K</td><td class="num">4.9K</td><td class="num">0.69%</td><td class="num" style="color:#9b9b96">0.40–0.80%<span class="bm-chip watch">LOW</span></td><td class="num">$1.120</td><td class="num" style="color:#9b9b96">$1.00–$3.00<span class="bm-chip watch">above</span></td><td class="num">—</td><td><span class="pill pill-amber">Reach extension</span></td></tr>
+          <tr class="total-row"><td>Total / Blended</td><td class="num">$87,105</td><td class="num">62.5M</td><td class="num">1.83M</td><td class="num">2.93%</td><td class="num" style="color:#9b9b96">0.6–1.2% EB avg<span class="bm-chip beat">2.4× above</span></td><td class="num">$0.048</td><td class="num" style="color:#9b9b96">$0.30–$0.80 EB avg<span class="bm-chip beat">94% below</span></td><td class="num">1,078</td><td></td></tr>
         </tbody>
       </table>
     </div>
@@ -501,6 +523,41 @@ table.report tr:last-child td{border-bottom:none}
     </div>
 
     <div class="insight-box win"><strong>Channel takeaway:</strong> Each channel is performing in line with its strategic role. The combination is delivering more than the sum of its parts — together they cover the full awareness-to-intent talent funnel.</div>
+
+    <div class="section-title">Benchmark context · Channel by channel</div>
+    <div class="bm-callout">
+      <div class="bm-col">
+        <div class="bm-col-head">📱 Meta</div>
+        <div class="bm-row"><span class="bm-metric">CTR</span><span><span class="bm-bench">0.5–1.2%</span> → <span class="bm-ours">1.18%</span><span class="bm-tag-beat">AT BENCHMARK</span></span></div>
+        <div class="bm-row"><span class="bm-metric">CPC</span><span><span class="bm-bench">$1.50–$3.50</span> → <span class="bm-ours">$0.066</span><span class="bm-tag-beat">96% BELOW</span></span></div>
+        <div class="bm-row"><span class="bm-metric">CPM</span><span><span class="bm-bench">$8–$15</span> → <span class="bm-ours">$0.78</span><span class="bm-tag-beat">90%+ BELOW</span></span></div>
+      </div>
+      <div class="bm-col">
+        <div class="bm-col-head">🎯 Google Display</div>
+        <div class="bm-row"><span class="bm-metric">CTR</span><span><span class="bm-bench">0.35–0.60%</span> → <span class="bm-ours">6.74%</span><span class="bm-tag-beat">11× ABOVE</span></span></div>
+        <div class="bm-row"><span class="bm-metric">CPC</span><span><span class="bm-bench">$0.75–$2.00</span> → <span class="bm-ours">$0.018</span><span class="bm-tag-beat">98% BELOW</span></span></div>
+        <div class="bm-row"><span class="bm-metric">CPM</span><span><span class="bm-bench">$2–$5</span> → <span class="bm-ours">$1.21</span><span class="bm-tag-beat">BELOW</span></span></div>
+      </div>
+      <div class="bm-col">
+        <div class="bm-col-head">💼 LinkedIn</div>
+        <div class="bm-row"><span class="bm-metric">CTR</span><span><span class="bm-bench">0.39–0.60%</span> → <span class="bm-ours">1.17%</span><span class="bm-tag-beat">2× ABOVE</span></span></div>
+        <div class="bm-row"><span class="bm-metric">CPC</span><span><span class="bm-bench">$6–$12</span> → <span class="bm-ours">$0.289</span><span class="bm-tag-beat">95% BELOW</span></span></div>
+        <div class="bm-row"><span class="bm-metric">CPM</span><span><span class="bm-bench">$30–$50</span> → <span class="bm-ours">$3.39</span><span class="bm-tag-beat">89% BELOW</span></span></div>
+      </div>
+      <div class="bm-col">
+        <div class="bm-col-head">🔍 Google Search</div>
+        <div class="bm-row"><span class="bm-metric">CTR</span><span><span class="bm-bench">4–8%</span> → <span class="bm-ours">6.36%</span><span class="bm-tag-beat">WITHIN</span></span></div>
+        <div class="bm-row"><span class="bm-metric">CPC</span><span><span class="bm-bench">$1.50–$4.00</span> → <span class="bm-ours">$0.320</span><span class="bm-tag-beat">79% BELOW</span></span></div>
+        <div class="bm-row"><span class="bm-metric">Cost/apply</span><span><span class="bm-bench">$15–$60</span> → <span class="bm-ours">$10.79</span><span class="bm-tag-beat">BELOW</span></span></div>
+      </div>
+      <div class="bm-col">
+        <div class="bm-col-head">🅱 Bing</div>
+        <div class="bm-row"><span class="bm-metric">CTR</span><span><span class="bm-bench">0.40–0.80%</span> → <span class="bm-ours">0.69%</span><span class="bm-tag-watch">LOWER END</span></span></div>
+        <div class="bm-row"><span class="bm-metric">CPC</span><span><span class="bm-bench">$1.00–$3.00</span> → <span class="bm-ours">$1.12</span><span class="bm-tag-watch">AT HIGH END</span></span></div>
+        <div class="bm-row"><span class="bm-metric">Note</span><span class="bm-bench" style="font-size:10px">Early-stage calibration</span></div>
+      </div>
+    </div>
+    <p style="font-size:10px;color:#b8b8b0;margin-top:4px;font-style:italic">Benchmarks: WordStream 2024 EB report · LinkedIn Marketing Solutions EB benchmark data · Google Ads industry benchmarks (Employment &amp; HR) · Rival IQ Social Media Benchmark Report 2024</p>
 
     <div class="insight-box watch"><strong>Bing is the channel to watch:</strong> $5,511 spent for 4.9K clicks at $1.12 CPC and 0.69% CTR — the only channel running below benchmark. As an early-stage channel still calibrating its bidding, Bing deserves one more month of runway. We recommend a clear May read followed by a <strong>decision point at end of May</strong> — either continue at scale into Month 3 if efficiency improves, or sunset and reallocate the budget within USA's existing channel mix.</div>
   </div>
@@ -590,6 +647,7 @@ table.report tr:last-child td{border-bottom:none}
       </table>
     </div>
     <div class="insight-box"><strong>Creative direction read:</strong> Younger audiences (18-24) drive the largest impression volume but lowest CTR — typical scrolling behaviour. Engagement quality rises consistently with age — 65+ audience CTR is 2.6× that of 18-24. The creative is connecting strongest with mature professional audiences while still achieving meaningful younger-audience reach.</div>
+    <div class="bm-bar"><span class="bm-label">Meta Age Benchmarks</span><div class="bm-items"><div class="bm-item"><span class="bi-ch">18–34 EB avg</span><span class="bi-val">0.5–0.8% CTR</span><span class="bi-ours">Kenvue: 0.89–1.13%</span><span class="bi-delta">✓ Above</span></div><div class="bm-item"><span class="bi-ch">35–54 EB avg</span><span class="bi-val">0.9–1.2% CTR</span><span class="bi-ours">Kenvue: 1.80–2.06%</span><span class="bi-delta">✓ 1.7× above</span></div><div class="bm-item"><span class="bi-ch">55+ EB avg</span><span class="bi-val">1.0–1.5% CTR</span><span class="bi-ours">Kenvue: 2.25–2.35%</span><span class="bi-delta">✓ 1.6× above</span></div></div></div>
 
     <div class="section-title">Top Meta placements</div>
     <div style="overflow-x:auto">
@@ -621,6 +679,7 @@ table.report tr:last-child td{border-bottom:none}
         </tbody>
       </table>
     </div>
+    <div class="bm-bar"><span class="bm-label">LinkedIn CTR Benchmarks</span><div class="bm-items"><div class="bm-item"><span class="bi-ch">LI sponsored content avg</span><span class="bi-val">0.39–0.60% CTR</span><span class="bi-ours">Kenvue: 0.85–1.42%</span><span class="bi-delta">✓ All bands above benchmark</span></div><div class="bm-item"><span class="bi-ch">LI EB / talent brand</span><span class="bi-val">0.4–0.8% CTR</span><span class="bi-ours">Kenvue blended: 1.17%</span><span class="bi-delta">✓ 1.5× above</span></div><div class="bm-item"><span class="bi-ch">LI senior+ avg</span><span class="bi-val">0.6–1.0% CTR</span><span class="bi-ours">Kenvue Dir/VP/CXO: 1.07–1.42%</span><span class="bi-delta">✓ Above across all</span></div></div></div>
     <div class="insight-box"><strong>Seniority pattern:</strong> Volume concentrates at Entry/Senior levels (~80% of impressions), but engagement quality rises with seniority — CXO and VP audiences click at 1.4× the entry-level rate. Encouraging signal for executive-talent attraction.</div>
 
     <div class="section-title">Google device split</div>
@@ -842,12 +901,15 @@ table.report tr:last-child td{border-bottom:none}
     </div>
 
     <div class="section-title">🥇 Top by CTR · Meta (min 10K impressions)</div>
+    <div class="bm-bar"><span class="bm-label">Meta EB Benchmark</span><div class="bm-items"><div class="bm-item"><span class="bi-ch">Industry CTR avg</span><span class="bi-val">0.5–1.2%</span></div><div class="bm-item"><span class="bi-ch">Campaign CTR</span><span class="bi-ours">1.18%</span><span class="bi-delta">✓ At upper benchmark</span></div><div class="bm-item"><span class="bi-ch">Industry CPC avg</span><span class="bi-val">$1.50–$3.50</span></div><div class="bm-item"><span class="bi-ch">Campaign CPC</span><span class="bi-ours">$0.066</span><span class="bi-delta">✓ 96% below benchmark</span></div></div></div>
     <div class="cards-grid" id="cr-top-meta-ctr"></div>
 
     <div class="section-title">🚀 Top by click volume · Google Display</div>
+    <div class="bm-bar"><span class="bm-label">Google Display EB Benchmark</span><div class="bm-items"><div class="bm-item"><span class="bi-ch">Industry CTR avg</span><span class="bi-val">0.35–0.60%</span></div><div class="bm-item"><span class="bi-ch">Campaign CTR</span><span class="bi-ours">6.74%</span><span class="bi-delta">✓ 11× above benchmark</span></div><div class="bm-item"><span class="bi-ch">Industry CPC avg</span><span class="bi-val">$0.75–$2.00</span></div><div class="bm-item"><span class="bi-ch">Campaign CPC</span><span class="bi-ours">$0.018</span><span class="bi-delta">✓ 98% below benchmark</span></div></div></div>
     <div class="cards-grid" id="cr-top-google-clk"></div>
 
     <div class="section-title">💼 Top by CTR · LinkedIn (min 5K impressions)</div>
+    <div class="bm-bar"><span class="bm-label">LinkedIn Sponsored Content EB Benchmark</span><div class="bm-items"><div class="bm-item"><span class="bi-ch">Industry CTR avg</span><span class="bi-val">0.39–0.60%</span></div><div class="bm-item"><span class="bi-ch">Campaign CTR</span><span class="bi-ours">1.17%</span><span class="bi-delta">✓ 2× above benchmark</span></div><div class="bm-item"><span class="bi-ch">Industry CPC avg</span><span class="bi-val">$6–$12</span></div><div class="bm-item"><span class="bi-ch">Campaign CPC</span><span class="bi-ours">$0.289</span><span class="bi-delta">✓ 95% below benchmark</span></div></div></div>
     <div class="cards-grid" id="cr-top-linkedin-ctr"></div>
 
     <div class="insight-box win" style="margin-top:20px"><strong>What carries forward:</strong> The CTR leaders below give us creative archetypes that worked. For Month 2, we recommend building variants around the top 3 templates per channel — preserving the message angle and visual treatment that resonated, while testing new copy and asset variations to keep the audience engaged as scale increases.</div>
