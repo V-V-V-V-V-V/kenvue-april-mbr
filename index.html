@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenvue × AB&amp;C × Joveo — Monthly Business Review · April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:#f4f4f0;color:#1a1a1a;min-height:100vh;padding:24px;line-height:1.55;font-size:14px}
+.container{max-width:1380px;margin:0 auto}
+
+/* Cover */
+.cover{background:linear-gradient(135deg,#003d2b 0%,#00754a 50%,#00a651 100%);color:#fff;padding:36px 40px;border-radius:14px;margin-bottom:18px;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;top:-50%;right:-20%;width:500px;height:500px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.cover-pill{font-size:10px;font-weight:600;letter-spacing:1.4px;color:#a8e6c1;background:rgba(255,255,255,0.1);padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:14px}
+.cover h1{font-size:36px;font-weight:700;letter-spacing:-0.6px;line-height:1.1;margin-bottom:8px}
+.cover .sub{font-size:16px;opacity:.9;font-weight:400;margin-bottom:6px}
+.cover .meta{font-size:12px;opacity:.75;letter-spacing:.5px;margin-top:18px}
+
+/* Top KPI strip */
+.kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px}
+@media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.kpi-strip{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:#fff;border:1px solid #e5e5e0;border-radius:10px;padding:14px 16px}
+.kpi .l{font-size:9px;color:#6b6b66;letter-spacing:.5px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.kpi .v{font-size:22px;font-weight:700;color:#1a1a1a;font-variant-numeric:tabular-nums;line-height:1.05;letter-spacing:-0.4px}
+.kpi .s{font-size:11px;color:#6b6b66;margin-top:3px}
+.kpi .s.g{color:#00754a;font-weight:600}
+
+/* Tabs */
+.tabs{display:flex;gap:1px;background:#fff;border:1px solid #e5e5e0;border-radius:12px 12px 0 0;padding:6px 6px 0;border-bottom:none;overflow-x:auto}
+.tab{flex:1;min-width:115px;padding:13px 8px;cursor:pointer;font-size:11px;font-weight:600;color:#6b6b66;border:none;background:transparent;font-family:inherit;text-align:center;border-radius:8px 8px 0 0;border-bottom:3px solid transparent;transition:all .15s;line-height:1.3}
+.tab:hover{color:#1a1a1a;background:#fafaf8}
+.tab.active{color:#00a651;border-bottom-color:#00a651;background:rgba(0,166,81,0.04)}
+.tab-num{display:block;font-size:9px;color:#b8b8b0;letter-spacing:.4px;font-weight:600;margin-bottom:3px}
+.tab.active .tab-num{color:#5db589}
+
+.panel{background:#fff;border:1px solid #e5e5e0;border-radius:0 0 12px 12px;padding:30px 38px;display:none;min-height:540px}
+.panel.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.panel-header{margin-bottom:22px;border-bottom:1px solid #f0efe8;padding-bottom:18px}
+.panel-eyebrow{font-size:10px;font-weight:600;letter-spacing:1.2px;color:#00a651;text-transform:uppercase;margin-bottom:8px}
+.panel-title{font-size:25px;font-weight:700;color:#1a1a1a;line-height:1.2;margin-bottom:8px;letter-spacing:-0.4px}
+.panel-sub{font-size:14px;color:#555;max-width:880px;line-height:1.6}
+
+.section-title{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:#6b6b66;margin:24px 0 12px;display:flex;align-items:center;gap:8px}
+.section-title::before{content:"";width:3px;height:13px;background:#00a651;border-radius:2px}
+
+/* Hero callout */
+.hero-quote{background:linear-gradient(135deg,#eff7ee,#f4faf2);border-left:3px solid #00a651;padding:18px 22px;margin-bottom:18px;border-radius:0 8px 8px 0;font-size:15px;line-height:1.55;color:#085041;font-weight:500}
+
+/* Stat boxes */
+.stat-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.stat-box{background:#fafaf8;border:1px solid #f0efe8;border-radius:10px;padding:13px 16px}
+.stat-box .l{font-size:10px;color:#6b6b66;letter-spacing:.3px;text-transform:uppercase;font-weight:600;margin-bottom:5px}
+.stat-box .v{font-size:21px;font-weight:700;color:#1a1a1a;font-variant-numeric:tabular-nums;line-height:1.1;letter-spacing:-0.3px}
+.stat-box .s{font-size:11px;color:#6b6b66;margin-top:3px}
+.stat-box.win{background:#eff7ee;border-color:#cae8c4}
+.stat-box.win .v{color:#00754a}
+.stat-box.hi{background:#eef5fc;border-color:#c8def0}
+.stat-box.hi .v{color:#0c447c}
+.stat-box.warn{background:#faeeda;border-color:#f0d9b8}
+.stat-box.warn .v{color:#854f0b}
+
+/* Two-col / three-col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.two-col{grid-template-columns:1fr}}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:900px){.three-col{grid-template-columns:1fr}}
+
+/* Charts */
+.chart-wrap{background:#fafaf8;border:1px solid #f0efe8;border-radius:10px;padding:18px}
+.chart-wrap-title{font-size:11px;font-weight:600;color:#6b6b66;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+.chart-canvas{position:relative;height:280px}
+.chart-canvas.short{height:230px}
+.chart-canvas.tall{height:340px}
+
+/* Tables */
+table.report{width:100%;border-collapse:collapse;font-size:13px}
+table.report th{text-align:left;padding:10px 12px;font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:#6b6b66;border-bottom:1px solid #e5e5e0;font-weight:600;background:#fafaf8;white-space:nowrap}
+table.report th.num,table.report td.num{text-align:right;font-variant-numeric:tabular-nums}
+table.report td{padding:10px 12px;border-bottom:1px solid #f0efe8;color:#1a1a1a}
+table.report tr:last-child td{border-bottom:none}
+.total-row td{background:#f7f7f5!important;font-weight:700}
+
+/* Pills */
+.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:600}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%}
+.pill-green{background:#e1f5ee;color:#00754a}.pill-green::before{background:#00a651}
+.pill-amber{background:#faeeda;color:#854f0b}.pill-amber::before{background:#ef9f27}
+.pill-blue{background:#e6f1fb;color:#0c447c}.pill-blue::before{background:#1a6bff}
+
+/* Insight boxes */
+.insight-box{background:#eef5fc;border:1px solid #c8def0;border-radius:10px;padding:14px 18px;margin-top:12px;font-size:13px;line-height:1.6;color:#0c4d8a}
+.insight-box.win{background:#e1f5ee;border-color:#c8e8d4;color:#085041}
+.insight-box.warn{background:#faeeda;border-color:#f0d9b8;color:#5d3a07}
+.insight-box.watch{background:#fff8e6;border-color:#f0d9b8;color:#854f0b}
+.insight-box.watch::before{content:"⚠ Watch area · ";font-weight:700;letter-spacing:.5px;text-transform:uppercase;font-size:11px;display:block;margin-bottom:6px;color:#854f0b}
+
+/* Hero highlight */
+.hero-highlight{background:linear-gradient(135deg,#eff7ee,#fafaf8);border:1px solid #cae8c4;border-radius:12px;padding:22px 26px;margin-bottom:18px}
+.hero-highlight .big{font-size:26px;font-weight:700;color:#00754a;margin-bottom:6px;line-height:1.2;letter-spacing:-0.3px}
+.hero-highlight .desc{font-size:14px;color:#444;line-height:1.6}
+
+/* Region cards */
+.region-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.region-card{background:#fafaf8;border:1px solid #f0efe8;border-radius:10px;padding:16px;border-left:3px solid #00a651}
+.region-card.amber{border-left-color:#ef9f27}
+.region-card.blue{border-left-color:#1a6bff}
+.region-card.purple{border-left-color:#7681E8}
+.region-head{font-size:14px;font-weight:700;margin-bottom:4px}
+.region-sub{font-size:11px;color:#6b6b66;margin-bottom:10px}
+.region-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.region-stat .l{font-size:9px;color:#9b9b96;text-transform:uppercase;letter-spacing:.3px;font-weight:600;margin-bottom:2px}
+.region-stat .v{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* Wins list */
+.wins{margin:14px 0}
+.win-row{display:flex;gap:18px;padding:14px 0;border-top:1px solid #f0efe8}
+.win-row:first-child{border-top:none}
+.win-row .num{font-size:24px;font-weight:700;color:#00754a;line-height:1;flex:none;width:32px;font-variant-numeric:tabular-nums}
+.win-row .body h4{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:4px;line-height:1.3}
+.win-row .body p{font-size:13px;color:#555;margin-bottom:0;line-height:1.55}
+
+/* Opportunity cards */
+.opp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:14px 0}
+.opp{border:2px solid #00754a;border-radius:8px;padding:16px 18px;background:#f0f9f3}
+.opp-h{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#00754a;font-weight:700;margin-bottom:6px}
+.opp h4{font-size:14px;color:#1a1a1a;font-weight:700;margin-bottom:6px;line-height:1.3}
+.opp p{font-size:12.5px;color:#444;margin-bottom:8px;line-height:1.55}
+.opp p:last-child{margin-bottom:0}
+.opp-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:#00754a;padding:4px 10px;border-radius:4px;margin-top:6px}
+
+/* Forward roadmap */
+.forward{margin:14px 0;display:grid;grid-template-columns:1fr;gap:0}
+.forward-row{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:14px 0;border-top:1px solid #f0efe8}
+.forward-row:first-child{border-top:1px solid #00754a}
+.forward-row .when{font-size:11px;letter-spacing:.6px;text-transform:uppercase;font-weight:600;color:#00754a;padding-top:1px}
+.forward-row .what h5{font-size:14px;font-weight:600;margin-bottom:4px}
+.forward-row .what p{font-size:13px;color:#555;margin-bottom:0;line-height:1.55}
+
+.footer{margin-top:18px;text-align:center;font-size:11px;color:#9b9b96;padding:12px 0}
+
+/* Top Ads tab */
+.top-ads-section{margin-bottom:32px}
+.top-ads-section-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-bottom:10px;border-bottom:1px solid #e5e5e0;margin-bottom:14px}
+.top-ads-section-title{font-size:15px;font-weight:700;color:#1a1a1a;display:flex;align-items:center;gap:10px}
+.top-ads-section-title .ch-icon{width:28px;height:28px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff}
+.top-ads-section-title .ch-icon.meta{background:linear-gradient(135deg,#0866FF,#7B61FF)}
+.top-ads-section-title .ch-icon.google{background:linear-gradient(135deg,#4285F4,#34A853)}
+.top-ads-section-title .ch-icon.linkedin{background:#0A66C2}
+.top-ads-section-sub{font-size:11px;color:#6b6b66;font-weight:500}
+.top-ads-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:900px){.top-ads-grid{grid-template-columns:1fr}}
+.top-ad-card{display:grid;grid-template-columns:160px 1fr;background:#fff;border:1px solid #e5e5e0;border-radius:10px;overflow:hidden;transition:transform .15s,box-shadow .15s;cursor:pointer}
+.top-ad-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.08);border-color:#cae8c4}
+.top-ad-card.rank-1{border:2px solid #00a651;background:linear-gradient(to right, #f0f9f3 0%, #fff 30%)}
+.top-ad-card .img-side{position:relative;background:#f0efe8;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:160px}
+.top-ad-card .img-side img{width:100%;height:100%;object-fit:cover;display:block}
+.top-ad-card .img-side .placeholder{font-size:10px;color:#9b9b96;text-align:center;padding:14px;background:repeating-linear-gradient(45deg,#f0efe8,#f0efe8 6px,#fafaf8 6px,#fafaf8 12px)}
+.top-ad-card .rank-badge{position:absolute;top:8px;left:8px;background:#fff;color:#00754a;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,0.15);font-variant-numeric:tabular-nums}
+.top-ad-card.rank-1 .rank-badge{background:#00a651;color:#fff}
+.top-ad-card .info-side{padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
+.top-ad-card .info-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.top-ad-card .info-tags span{font-size:9px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;padding:3px 8px;border-radius:10px}
+.top-ad-card .tag-country{background:#eef5fc;color:#0c447c}
+.top-ad-card .tag-cat{background:#f0efe8;color:#555}
+.top-ad-card .info-headline{font-size:13px;color:#6b6b66;line-height:1.45;margin-bottom:10px;font-weight:500}
+.top-ad-card .info-headline strong{color:#00754a;font-weight:700;font-size:18px;letter-spacing:-0.3px}
+.top-ad-card .info-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-top:10px;border-top:1px solid #f0efe8}
+.top-ad-card .info-stats .s{font-size:10px}
+.top-ad-card .info-stats .s .v{font-size:13px;font-weight:700;color:#1a1a1a;display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.top-ad-card .info-stats .s .l{font-size:9px;color:#9b9b96;letter-spacing:.3px;text-transform:uppercase;font-weight:600;margin-top:2px}
+@media(max-width:540px){.top-ad-card{grid-template-columns:1fr}.top-ad-card .img-side{min-height:200px}}
+
+/* Image modal */
+.img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.img-modal.open{display:flex}
+.img-modal img{max-width:90%;max-height:90vh;object-fit:contain;border-radius:8px}
+.img-modal-close{position:absolute;top:20px;right:24px;color:#fff;font-size:32px;font-weight:300;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:50%;border:none}
+
+
+/* Top Creatives tab – card grid */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.cr-card{background:#fafaf8;border:1px solid #f0efe8;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s;cursor:pointer}
+.cr-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+.cr-card.top{border-color:#00a651;box-shadow:0 0 0 1px #00a651}
+.cr-card-img{width:100%;aspect-ratio:1/1;background:#e5e5e0;position:relative;overflow:hidden}
+.cr-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.cr-card-img .cr-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#9b9b96;text-align:center;padding:20px;background:repeating-linear-gradient(45deg,#f0efe8,#f0efe8 8px,#fafaf8 8px,#fafaf8 16px)}
+.cr-badge{position:absolute;top:8px;left:8px;background:#00a651;color:#fff;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 8px;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,0.15)}
+.cr-card-meta{padding:10px 12px;background:#fff;border-top:1px solid #f0efe8}
+.cr-card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.cr-card-tags span{font-size:9px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;padding:2px 7px;border-radius:10px;background:#f0efe8;color:#555}
+.cr-card-tags span.country{background:#eef5fc;color:#0c447c}
+.cr-card-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
+.cr-card-stat{font-size:10px;color:#6b6b66}
+.cr-card-stat .v{font-weight:700;color:#1a1a1a;font-size:13px;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+.cr-card-stat .l{font-size:9px;letter-spacing:.3px;text-transform:uppercase;color:#9b9b96;font-weight:600;margin-top:2px}
+.cr-card-stat.hi .v{color:#00754a}
+.cr-empty{padding:40px;text-align:center;color:#9b9b96;font-size:13px}
+/* Top Creatives modal */
+.cr-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1100;align-items:center;justify-content:center;padding:20px}
+.cr-modal.open{display:flex;animation:fade .2s ease}
+.cr-modal-box{background:#fff;max-width:520px;width:100%;border-radius:12px;overflow:hidden;max-height:90vh;display:flex;flex-direction:column;position:relative}
+.cr-modal-img-wrap{width:100%;background:#000;max-height:55vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cr-modal-img-wrap img{max-width:100%;max-height:55vh;object-fit:contain}
+.cr-modal-body{padding:18px 22px;overflow-y:auto}
+.cr-modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.95);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;font-weight:600;color:#1a1a1a;z-index:1}
+.cr-modal-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.cr-modal-tags span{font-size:10px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;padding:3px 9px;border-radius:10px;background:#f0efe8;color:#555}
+.cr-modal-tags span.country{background:#eef5fc;color:#0c447c}
+.cr-modal-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.cr-modal-stat{background:#fafaf8;border:1px solid #f0efe8;border-radius:6px;padding:8px 10px}
+.cr-modal-stat .l{font-size:9px;letter-spacing:.4px;text-transform:uppercase;color:#9b9b96;font-weight:600}
+.cr-modal-stat .v{font-size:16px;font-weight:700;color:#1a1a1a;line-height:1.2;font-variant-numeric:tabular-nums;margin-top:3px}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-pill">CONFIDENTIAL · MONTHLY BUSINESS REVIEW</div>
+    <h1>Kenvue Always-On Employer Brand</h1>
+    <div class="sub">April 2026 · Month 1 of 3 · Performance review &amp; forward outlook</div>
+    <div class="meta">Joveo × AB&amp;C × Kenvue · Apr 2 – Apr 30, 2026 · 29 days · 5 channels · 7 markets · $479K total campaign</div>
+  </div>
+
+  <!-- TOP KPIs -->
+  <div class="kpi-strip">
+    <div class="kpi"><div class="l">Total Spend</div><div class="v">$87,105</div><div class="s">Across 5 channels</div></div>
+    <div class="kpi"><div class="l">Impressions</div><div class="v">62.5M</div><div class="s">25.7M unique reach (Meta)</div></div>
+    <div class="kpi"><div class="l">Clicks</div><div class="v">1.83M</div><div class="s">Career-content visits</div></div>
+    <div class="kpi"><div class="l">CTR</div><div class="v">2.93%</div><div class="s g">~3× EB benchmark</div></div>
+    <div class="kpi"><div class="l">Blended CPC</div><div class="v">$0.048</div><div class="s g">Highly efficient</div></div>
+    <div class="kpi"><div class="l">Apply Starts</div><div class="v">1,078</div><div class="s">Google + LinkedIn (passive)</div></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" data-tab="summary"><span class="tab-num">01</span>Summary</button>
+    <button class="tab" data-tab="wins"><span class="tab-num">02</span>Wins</button>
+    <button class="tab" data-tab="trajectory"><span class="tab-num">03</span>Trajectory</button>
+    <button class="tab" data-tab="regions"><span class="tab-num">04</span>Regional</button>
+    <button class="tab" data-tab="channels"><span class="tab-num">05</span>Channels</button>
+    <button class="tab" data-tab="functions"><span class="tab-num">06</span>Functions</button>
+    <button class="tab" data-tab="audience"><span class="tab-num">07</span>Audience</button>
+    <button class="tab" data-tab="topads"><span class="tab-num">08</span>Top Ads</button>
+    <button class="tab" data-tab="applies"><span class="tab-num">09</span>Apply Starts</button>
+    <button class="tab" data-tab="opportunities"><span class="tab-num">10</span>Opportunities</button>
+    <button class="tab" data-tab="forward"><span class="tab-num">11</span>Forward Look</button>
+    <button class="tab" data-tab="topcreatives"><span class="tab-num">12</span>Top Creatives</button>
+  </div>
+
+  <!-- ============ 01 SUMMARY ============ -->
+  <div class="panel active" id="summary">
+    <div class="panel-header">
+      <div class="panel-eyebrow">01 · The month in brief</div>
+      <h2 class="panel-title">April delivered exactly the kind of launch month the always-on model is built for.</h2>
+      <p class="panel-sub">Month 1 of the 3-month campaign closed at $87,105 invested — within the planned $92K Month 1 envelope (20% of the $479K total) — across five channels and seven priority markets. The campaign generated 62.5M impressions, 1.83M clicks, 25.7M unique people reached on Meta, and 1,078 tracked apply starts. Click-through rate (2.93%) and cost-per-click ($0.048) both substantially outperformed employer-brand category benchmarks.</p>
+    </div>
+
+    <div class="hero-quote">"$87,105 invested. 1.83 million career-content visits. 25.7 million unique people reached. The Kenvue talent message is at full operating scale across every priority market."</div>
+
+    <div class="section-title">Headline numbers</div>
+    <div class="stat-strip">
+      <div class="stat-box hi"><div class="l">Total Spend</div><div class="v">$87,105</div><div class="s">5 channels · 7 markets</div></div>
+      <div class="stat-box win"><div class="l">Impressions</div><div class="v">62.5M</div><div class="s">25.7M unique reach (Meta)</div></div>
+      <div class="stat-box win"><div class="l">Clicks</div><div class="v">1.83M</div><div class="s">$0.048 blended CPC</div></div>
+      <div class="stat-box win"><div class="l">CTR</div><div class="v">2.93%</div><div class="s">~3× EB benchmark</div></div>
+      <div class="stat-box hi"><div class="l">Apply Starts</div><div class="v">1,078</div><div class="s">Google + LinkedIn tracked</div></div>
+      <div class="stat-box win"><div class="l">Reach efficiency</div><div class="v">$3.39</div><div class="s">cost per 1K unique reach</div></div>
+    </div>
+
+    <div class="section-title">What this means</div>
+    <p style="font-size:14px;color:#444;line-height:1.7;margin-bottom:12px">The campaign is in market, at scale, and engaging audiences across every region. The Kenvue talent narrative is reaching its intended communities — and the data shows real signal in how it's landing. Against typical employer-brand benchmarks (CTR 0.6–1.2%, CPC $0.30–$0.80), the campaign is operating in the top decile of efficiency.</p>
+    <p style="font-size:14px;color:#444;line-height:1.7;margin-bottom:12px">Google Display alone delivered 1.30M clicks at $0.018 CPC — exceptional by any standard. Meta reached 25.7 million unique people across the seven markets at sub-$1 CPM. <strong>Month 2 is positioned to compound on this strong foundation</strong> with sharper creative, deeper placement optimisation, and refined function-level investment.</p>
+
+    <div class="insight-box win"><strong>Bottom line:</strong> Month 1 has validated the channel mix, market split, and creative approach. The campaign exits April with a working playbook, healthy efficiency margins, and clear levers to compound performance heading into Month 2.</div>
+
+    <div class="insight-box win"><strong>On-budget delivery:</strong> Month 1 closed at $87,105 against the $92K planned envelope (20% of total $479K, per the 20/35/45 monthly cadence). The remaining ~$5K of headroom carries into Month 2, where the planned spend rises to ~$167K (35% of total) before Month 3 closes the campaign with the largest spend month (~$216K · 45% of total).</div>
+  </div>
+
+  <!-- ============ 02 WINS ============ -->
+  <div class="panel" id="wins">
+    <div class="panel-header">
+      <div class="panel-eyebrow">02 · The standout achievements</div>
+      <h2 class="panel-title">Five wins to highlight.</h2>
+      <p class="panel-sub">Month 1 produced specific, measurable achievements that validate the campaign architecture and creative approach.</p>
+    </div>
+
+    <div class="insight-box win" style="margin-top:0;margin-bottom:20px"><strong>The Month 1 scoreboard:</strong> $87,105 invested (within the $92K target). 62.5M impressions delivered. 1.83M career-content visits. 25.7M unique people reached on Meta. 1,078 apply starts tracked. CTR 3× benchmark. CPC 6-10× more efficient than benchmark. <strong style="color:#00754a">A textbook launch month for an always-on programme.</strong></div>
+
+    <div class="wins">
+      <div class="win-row">
+        <div class="num">01</div>
+        <div class="body">
+          <h4>Click-through rate landed ~3× the EB benchmark.</h4>
+          <p>2.93% blended CTR against a typical employer-brand range of 0.6–1.2%. This is the strongest single signal that the creative is connecting with audiences across every market it's deployed in.</p>
+        </div>
+      </div>
+      <div class="win-row">
+        <div class="num">02</div>
+        <div class="body">
+          <h4>Cost-per-click came in 6–10× more efficient than benchmark.</h4>
+          <p>$0.048 blended CPC against a typical $0.30–$0.80 EB range. This level of efficiency means every Month 2 dollar will translate into substantially more reach and engagement — a compounding advantage as spend scales.</p>
+        </div>
+      </div>
+      <div class="win-row">
+        <div class="num">03</div>
+        <div class="body">
+          <h4>Google Display delivered category-leading performance.</h4>
+          <p>1.30M clicks at $0.018 CPC and 6.74% CTR. Display alone accounts for the majority of total click volume, and is delivering at efficiency levels that are essentially unmatched in EB advertising.</p>
+        </div>
+      </div>
+      <div class="win-row">
+        <div class="num">04</div>
+        <div class="body">
+          <h4>Meta achieved 25.7M unique reach across all markets.</h4>
+          <p>The campaign put the Kenvue careers narrative in front of 25.7 million distinct people on Meta alone, with another 1.83M clicks driving direct traffic to careers content. The scale of the talent-narrative footprint this month is significant.</p>
+        </div>
+      </div>
+      <div class="win-row">
+        <div class="num">05</div>
+        <div class="body">
+          <h4>1,078 apply starts tracked — a clear leading indicator.</h4>
+          <p>Even with apply-tracking limited to Google and LinkedIn, the campaign produced 1,078 application starts. Google Search converted at 2.96% — 922 apply starts on 31K clicks at a $10.79 cost per apply start, an excellent ratio for high-intent traffic.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 03 TRAJECTORY ============ -->
+  <div class="panel" id="trajectory">
+    <div class="panel-header">
+      <div class="panel-eyebrow">03 · How the month evolved</div>
+      <h2 class="panel-title">The campaign built into peak delivery in Weeks 2–3.</h2>
+      <p class="panel-sub">Looking at daily delivery, the campaign followed a deliberate ramp pattern — establishing audience signals in Week 1, hitting peak efficiency in Weeks 2–3, then pacing down ahead of Month 2's larger budget allocation.</p>
+    </div>
+
+    <div class="chart-wrap" style="margin-bottom:14px">
+      <div class="chart-wrap-title">Daily spend &amp; CTR · Apr 2 – Apr 30</div>
+      <div class="chart-canvas tall"><canvas id="daily_chart"></canvas></div>
+    </div>
+
+    <div class="section-title">Weekly breakdown</div>
+    <div style="overflow-x:auto">
+      <table class="report">
+        <thead><tr><th>Week</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Applies</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td><strong>W1 · Apr 2-7</strong></td><td class="num">$15,891</td><td class="num">11.94M</td><td class="num">334K</td><td class="num">2.80%</td><td class="num">$0.048</td><td class="num">94</td><td><span class="pill pill-blue">Launch</span></td></tr>
+          <tr><td><strong>W2 · Apr 8-14</strong></td><td class="num">$23,988</td><td class="num">18.84M</td><td class="num">650K</td><td class="num" style="color:#00754a"><strong>3.45%</strong></td><td class="num" style="color:#00754a"><strong>$0.037</strong></td><td class="num"><strong>511</strong></td><td><span class="pill pill-green">Optimisation</span></td></tr>
+          <tr><td><strong>W3 · Apr 15-21</strong></td><td class="num"><strong>$35,486</strong></td><td class="num"><strong>24.86M</strong></td><td class="num"><strong>733K</strong></td><td class="num">2.95%</td><td class="num">$0.048</td><td class="num">345</td><td><span class="pill pill-green">Peak scale</span></td></tr>
+          <tr><td><strong>W4 · Apr 22-28</strong></td><td class="num">$9,077</td><td class="num">5.32M</td><td class="num">89K</td><td class="num">1.68%</td><td class="num">$0.102</td><td class="num">83</td><td><span class="pill pill-amber">Planned taper</span></td></tr>
+          <tr><td>W5 · Apr 29-30</td><td class="num">$2,662</td><td class="num">1.52M</td><td class="num">24K</td><td class="num">1.57%</td><td class="num">$0.112</td><td class="num">45</td><td><span class="pill pill-blue">Month-end</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box win"><strong>Week 1 → Week 2 was the standout efficiency improvement</strong> — CTR rose 0.65 percentage points, click volume nearly doubled (+94%), and CPC dropped 22%. This is a clear signal that the auction algorithms calibrated successfully and the creative-audience fit landed quickly. Weeks 2–3 represented peak delivery, with W3 reaching $35K spend and 24.86M impressions — the largest single-week footprint of the month. The Week 4–5 pace-down was a deliberate operational decision to preserve budget headroom for Month 2's higher allocation. CTR remained above benchmark even at lower volume, and conversion tracking continued through to month-end.</div>
+
+    <div class="insight-box"><strong>Forward read:</strong> The trajectory provides clean confidence for Month 2: the auction infrastructure is working, scale is achievable without breaking efficiency, and W3 demonstrated there's runway to grow further.</div>
+
+    <div class="insight-box win"><strong>Delivered exactly to plan:</strong> The Week 3 → Week 4 pace-down was deliberate on our side. Month 1's planned spend was $92K (20% of the $479K campaign total) per the agreed 20/35/45 monthly cadence. By mid-April we were tracking ahead of that target, so we tapered W4 daily delivery to land Month 1 at $87,105 — within the planned envelope and with budget headroom intact for the Months 2 &amp; 3 ramp.</div>
+  </div>
+
+  <!-- ============ 04 REGIONS ============ -->
+  <div class="panel" id="regions">
+    <div class="panel-header">
+      <div class="panel-eyebrow">04 · Regional performance</div>
+      <h2 class="panel-title">Every region is engaging — each one tells a different part of the story.</h2>
+      <p class="panel-sub">Spend allocation followed the planned regional weighting: NA at 34% (USA), EMEA at 35% (France, Germany, UK), APAC at 18% (India), and LATAM at 12% (Brazil, Colombia). Each region performed in line with its strategic role.</p>
+    </div>
+
+    <div class="region-grid">
+      <div class="region-card">
+        <div class="region-head">🇺🇸 NA · USA</div>
+        <div class="region-sub">$29,253 · 33.6% of spend · primary market</div>
+        <div class="region-stats">
+          <div class="region-stat"><div class="l">Imp</div><div class="v">3.4M</div></div>
+          <div class="region-stat"><div class="l">CTR</div><div class="v">1.07%</div></div>
+          <div class="region-stat"><div class="l">CPC</div><div class="v">$0.81</div></div>
+        </div>
+        <p style="font-size:12px;color:#555;line-height:1.55;margin-top:10px">USA delivered 3.39M impressions and 36K clicks across the broadest channel mix of any market. Mature-market awareness build is working as designed — the campaign is establishing brand presence across a competitive talent landscape.</p>
+      </div>
+      <div class="region-card amber">
+        <div class="region-head">🇪🇺 EMEA · FR · DE · UK</div>
+        <div class="region-sub">$31,652 · 36.3% of spend · three-market footprint</div>
+        <div class="region-stats">
+          <div class="region-stat"><div class="l">Imp</div><div class="v">9.7M</div></div>
+          <div class="region-stat"><div class="l">CTR</div><div class="v">1.33%</div></div>
+          <div class="region-stat"><div class="l">CPC</div><div class="v">$0.25</div></div>
+        </div>
+        <p style="font-size:12px;color:#555;line-height:1.55;margin-top:10px">EMEA delivered 9.7M impressions, 129K clicks, and 60 tracked apply starts across three priority markets. UK is the most efficient mature-market converter (47 apply starts at $101 cost per apply start). France and Germany are in awareness-build phase.</p>
+      </div>
+      <div class="region-card blue">
+        <div class="region-head">🌏 APAC · India</div>
+        <div class="region-sub">$15,501 · 17.8% of spend · efficiency engine</div>
+        <div class="region-stats">
+          <div class="region-stat"><div class="l">Imp</div><div class="v">44.5M</div></div>
+          <div class="region-stat"><div class="l">CTR</div><div class="v" style="color:#00754a">3.21%</div></div>
+          <div class="region-stat"><div class="l">CPC</div><div class="v" style="color:#00754a">$0.011</div></div>
+        </div>
+        <p style="font-size:12px;color:#555;line-height:1.55;margin-top:10px">India delivered 44.5M impressions, 1.43M clicks, and 813 tracked apply starts at $19.07 cost per apply start — exceptional auction economics. India is acting as the volume multiplier for the campaign.</p>
+      </div>
+      <div class="region-card purple">
+        <div class="region-head">🌎 LATAM · BR · CO</div>
+        <div class="region-sub">$10,699 · 12.3% of spend · efficient secondary markets</div>
+        <div class="region-stats">
+          <div class="region-stat"><div class="l">Imp</div><div class="v">4.9M</div></div>
+          <div class="region-stat"><div class="l">CTR</div><div class="v" style="color:#00754a">4.86%</div></div>
+          <div class="region-stat"><div class="l">CPC</div><div class="v" style="color:#00754a">$0.044</div></div>
+        </div>
+        <p style="font-size:12px;color:#555;line-height:1.55;margin-top:10px">LATAM delivered 4.9M impressions and 184 apply starts at exceptional efficiency. Brazil is the standout — 5.22% CTR, 151 apply starts at $48 cost per apply start. Colombia is steady at 4.46% CTR.</p>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:14px">
+      <div class="chart-wrap"><div class="chart-wrap-title">Spend by market</div><div class="chart-canvas short"><canvas id="m_spend"></canvas></div></div>
+      <div class="chart-wrap"><div class="chart-wrap-title">CTR by market</div><div class="chart-canvas short"><canvas id="m_ctr"></canvas></div></div>
+    </div>
+
+    <div class="section-title">Country-level detail</div>
+    <div style="overflow-x:auto">
+      <table class="report">
+        <thead><tr><th>Market</th><th class="num">Spend</th><th class="num">% Share</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Apply Starts</th></tr></thead>
+        <tbody>
+          <tr><td>🇺🇸 <strong>USA</strong></td><td class="num">$29,253</td><td class="num">33.6%</td><td class="num">3.39M</td><td class="num">36K</td><td class="num">1.07%</td><td class="num">$0.805</td><td class="num">21</td></tr>
+          <tr><td>🇮🇳 <strong>India</strong></td><td class="num">$15,501</td><td class="num">17.8%</td><td class="num"><strong>44.5M</strong></td><td class="num"><strong>1.43M</strong></td><td class="num" style="color:#00754a">3.21%</td><td class="num" style="color:#00754a"><strong>$0.011</strong></td><td class="num"><strong>813</strong></td></tr>
+          <tr><td>🇫🇷 <strong>France</strong></td><td class="num">$14,866</td><td class="num">17.1%</td><td class="num">5.25M</td><td class="num">71K</td><td class="num">1.35%</td><td class="num">$0.209</td><td class="num">6</td></tr>
+          <tr><td>🇩🇪 <strong>Germany</strong></td><td class="num">$12,024</td><td class="num">13.8%</td><td class="num">3.34M</td><td class="num">45K</td><td class="num">1.34%</td><td class="num">$0.269</td><td class="num">7</td></tr>
+          <tr><td>🇧🇷 <strong>Brazil</strong></td><td class="num">$7,320</td><td class="num">8.4%</td><td class="num">2.70M</td><td class="num">141K</td><td class="num" style="color:#00754a"><strong>5.22%</strong></td><td class="num">$0.052</td><td class="num">151</td></tr>
+          <tr><td>🇬🇧 <strong>UK</strong></td><td class="num">$4,762</td><td class="num">5.5%</td><td class="num">1.13M</td><td class="num">14K</td><td class="num">1.19%</td><td class="num">$0.353</td><td class="num">47</td></tr>
+          <tr><td>🇨🇴 <strong>Colombia</strong></td><td class="num">$3,379</td><td class="num">3.9%</td><td class="num">2.19M</td><td class="num">98K</td><td class="num" style="color:#00754a">4.46%</td><td class="num">$0.035</td><td class="num">33</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box"><strong>Note on regional read:</strong> Mature markets (USA, France, Germany) carry higher CPCs reflecting more competitive talent advertising auctions. This is consistent with the awareness-build phase strategy — apply-volume in these markets typically peaks in Months 2–3 as brand familiarity compounds. The headline efficiency across the seven-market portfolio remains strong.</div>
+
+    <div class="insight-box watch"><strong>USA apply-start visibility is incomplete:</strong> 21 visible apply starts on $29K USA spend reflects tracking coverage, not actual conversion volume. Meta carries $11.9K of USA spend with no pixel-based apply-start tracking, and Bing's USA spend is also untracked. <strong>Implementing Meta apply-start tracking before Month 2 launch</strong> would close this visibility gap and give USA performance a significantly fairer read — particularly important since USA is the largest single market by spend.</div>
+  </div>
+
+  <!-- ============ 05 CHANNELS ============ -->
+  <div class="panel" id="channels">
+    <div class="panel-header">
+      <div class="panel-eyebrow">05 · Channel mix</div>
+      <h2 class="panel-title">Five channels, each playing a distinct role.</h2>
+      <p class="panel-sub">The channel mix is purpose-built — each platform is optimised for a different part of the talent-attraction funnel, and the data shows each one is doing its job.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="chart-wrap"><div class="chart-wrap-title">Spend distribution</div><div class="chart-canvas short"><canvas id="ch_spend"></canvas></div></div>
+      <div class="chart-wrap"><div class="chart-wrap-title">Click distribution</div><div class="chart-canvas short"><canvas id="ch_clicks"></canvas></div></div>
+    </div>
+
+    <div class="section-title">Channel performance</div>
+    <div style="overflow-x:auto">
+      <table class="report">
+        <thead><tr><th>Channel</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Applies</th><th>Strategic role</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Meta</strong></td><td class="num">$28,013</td><td class="num">35.9M</td><td class="num">423K</td><td class="num">1.18%</td><td class="num">$0.066</td><td class="num">—</td><td><span class="pill pill-green">Reach &amp; awareness</span></td></tr>
+          <tr><td><strong>Google Display</strong></td><td class="num">$23,304</td><td class="num">19.3M</td><td class="num"><strong>1.30M</strong></td><td class="num" style="color:#00754a"><strong>6.74%</strong></td><td class="num" style="color:#00754a"><strong>$0.018</strong></td><td class="num">150</td><td><span class="pill pill-green">Click volume</span></td></tr>
+          <tr><td><strong>LinkedIn</strong></td><td class="num">$20,329</td><td class="num">6.0M</td><td class="num">70K</td><td class="num">1.17%</td><td class="num">$0.289</td><td class="num">6</td><td><span class="pill pill-blue">Professional precision</span></td></tr>
+          <tr><td><strong>Google Search</strong></td><td class="num">$9,948</td><td class="num">469K</td><td class="num">31K</td><td class="num" style="color:#00754a">6.36%</td><td class="num">$0.320</td><td class="num"><strong>922</strong></td><td><span class="pill pill-blue">High intent</span></td></tr>
+          <tr><td><strong>Bing</strong></td><td class="num">$5,511</td><td class="num">718K</td><td class="num">4.9K</td><td class="num">0.69%</td><td class="num">$1.120</td><td class="num">—</td><td><span class="pill pill-amber">Reach extension</span></td></tr>
+          <tr class="total-row"><td>Total</td><td class="num">$87,105</td><td class="num">62.5M</td><td class="num">1.83M</td><td class="num">2.93%</td><td class="num">$0.048</td><td class="num">1,078</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-title">Strategic role of each channel</div>
+    <div class="region-card" style="margin-bottom:8px">
+      <div class="region-head">📱 Meta — The reach machine</div>
+      <p style="font-size:12.5px;color:#444;line-height:1.6;margin-top:6px">$28,013 · 35.9M impressions · 25.7M unique reach · 423K clicks. Meta is doing exactly what it's supposed to do: reaching the largest unique audience at the lowest cost-per-thousand. Instagram Reels carries 81% of Meta impressions.</p>
+    </div>
+    <div class="region-card amber" style="margin-bottom:8px">
+      <div class="region-head">🎯 Google Display — The click engine</div>
+      <p style="font-size:12.5px;color:#444;line-height:1.6;margin-top:6px">$23,304 · 1.30M clicks at $0.018 CPC · 6.74% CTR. Display is the standout channel by every click-efficiency measure — more than 6× the typical display benchmark. Clear runway to scale further at current efficiency levels.</p>
+    </div>
+    <div class="region-card blue" style="margin-bottom:8px">
+      <div class="region-head">💼 LinkedIn — Professional precision</div>
+      <p style="font-size:12.5px;color:#444;line-height:1.6;margin-top:6px">$20,329 · 70K clicks · 1.17% CTR. Higher CPC reflects the inherently higher cost of professional-network inventory, but the value is in audience precision. CXO and Director-level audiences show the highest CTR (1.07–1.42%).</p>
+    </div>
+    <div class="region-card purple" style="margin-bottom:8px">
+      <div class="region-head">🔍 Google Search — High-intent capture</div>
+      <p style="font-size:12.5px;color:#444;line-height:1.6;margin-top:6px">$9,948 · 31K clicks at $0.320 CPC · 922 apply starts. Search punches well above its weight on conversion signal — 86% of all tracked apply starts came from Search. Cost per apply start: $10.79.</p>
+    </div>
+    <div class="region-card amber">
+      <div class="region-head">🅱 Bing — Reach extension</div>
+      <p style="font-size:12.5px;color:#444;line-height:1.6;margin-top:6px">$5,511 · 4.9K clicks at $1.120 CPC. Bing entered the mix as a reach-extension channel for USA. CTR (0.69%) is below other channels — expected for an early-stage Bing campaign where bidding is still being calibrated.</p>
+    </div>
+
+    <div class="insight-box win"><strong>Channel takeaway:</strong> Each channel is performing in line with its strategic role. The combination is delivering more than the sum of its parts — together they cover the full awareness-to-intent talent funnel.</div>
+
+    <div class="insight-box watch"><strong>Bing is the channel to watch:</strong> $5,511 spent for 4.9K clicks at $1.12 CPC and 0.69% CTR — the only channel running below benchmark. As an early-stage channel still calibrating its bidding, Bing deserves one more month of runway. We recommend a clear May read followed by a <strong>decision point at end of May</strong> — either continue at scale into Month 3 if efficiency improves, or sunset and reallocate the budget within USA's existing channel mix.</div>
+  </div>
+
+  <!-- ============ 06 FUNCTIONS ============ -->
+  <div class="panel" id="functions">
+    <div class="panel-header">
+      <div class="panel-eyebrow">06 · Function performance</div>
+      <h2 class="panel-title">Strong function-level signal across the talent portfolio.</h2>
+      <p class="panel-sub">The campaign reached talent communities across 11 hiring functions. Performance varies by function — useful intelligence for sharpening the Month 2 mix and creative direction.</p>
+    </div>
+
+    <div class="chart-wrap" style="margin-bottom:14px">
+      <div class="chart-wrap-title">Spend &amp; clicks by function</div>
+      <div class="chart-canvas tall"><canvas id="cat_chart"></canvas></div>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table class="report">
+        <thead><tr><th>Function</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Apply Starts</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Marketing &amp; Sales</strong></td><td class="num">$35,607</td><td class="num">12.7M</td><td class="num">2.06%</td><td class="num">$0.14</td><td class="num">232</td></tr>
+          <tr><td><strong>Engineering</strong></td><td class="num">$12,895</td><td class="num">2.45M</td><td class="num">1.21%</td><td class="num">$0.44</td><td class="num">8</td></tr>
+          <tr><td><strong>Finance</strong></td><td class="num">$8,714</td><td class="num">6.6M</td><td class="num" style="color:#00754a">3.31%</td><td class="num" style="color:#00754a">$0.04</td><td class="num">91</td></tr>
+          <tr><td><strong>IT &amp; Data</strong></td><td class="num">$7,845</td><td class="num"><strong>24.1M</strong></td><td class="num">3.04%</td><td class="num" style="color:#00754a"><strong>$0.011</strong></td><td class="num"><strong>436</strong></td></tr>
+          <tr><td><strong>Healthcare</strong></td><td class="num">$6,363</td><td class="num">0.69M</td><td class="num">1.09%</td><td class="num">$0.85</td><td class="num">1</td></tr>
+          <tr><td><strong>R&amp;D</strong></td><td class="num">$5,886</td><td class="num">10.8M</td><td class="num" style="color:#00754a">3.59%</td><td class="num">$0.015</td><td class="num">232</td></tr>
+          <tr><td>Admin &amp; Ops</td><td class="num">$3,416</td><td class="num">1.7M</td><td class="num">1.38%</td><td class="num">$0.14</td><td class="num">4</td></tr>
+          <tr><td>Procurement</td><td class="num">$2,033</td><td class="num">1.5M</td><td class="num">3.49%</td><td class="num">$0.04</td><td class="num">11</td></tr>
+          <tr><td>Manufacturing</td><td class="num">$1,570</td><td class="num">0.6M</td><td class="num" style="color:#00754a">5.07%</td><td class="num">$0.05</td><td class="num">32</td></tr>
+          <tr><td>Marketing</td><td class="num">$1,413</td><td class="num">0.6M</td><td class="num" style="color:#00754a"><strong>6.75%</strong></td><td class="num">$0.04</td><td class="num">10</td></tr>
+          <tr><td>Operations</td><td class="num">$1,346</td><td class="num">0.7M</td><td class="num" style="color:#00754a">6.52%</td><td class="num">$0.03</td><td class="num">22</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="region-grid" style="margin-top:14px">
+      <div class="region-card">
+        <div class="region-head">Highest engagement</div>
+        <div class="region-sub">Marketing · Operations · Manufacturing</div>
+        <p style="font-size:12px;color:#555;line-height:1.55;margin-top:4px">Three smaller-budget functions delivering 5–7% CTR at strong cost efficiency. Audience-creative fit in these talent pools is best-in-class — strong candidates for incremental investment.</p>
+      </div>
+      <div class="region-card blue">
+        <div class="region-head">Strong volume + efficiency</div>
+        <div class="region-sub">IT &amp; Data · R&amp;D</div>
+        <p style="font-size:12px;color:#555;line-height:1.55;margin-top:4px">IT &amp; Data delivered 24.1M impressions and 436 apply starts at $0.011 CPC. R&amp;D produced 232 apply starts at $25 cost per apply start. Two efficient pools that should continue to scale.</p>
+      </div>
+      <div class="region-card amber">
+        <div class="region-head">Steady performers</div>
+        <div class="region-sub">Finance · Marketing &amp; Sales</div>
+        <p style="font-size:12px;color:#555;line-height:1.55;margin-top:4px">Marketing &amp; Sales is the largest function pool by design — 232 apply starts at $153 cost per apply start reflects mature-market mix. Finance: 91 apply starts at $96 cost per apply start, solid mid-tier converter.</p>
+      </div>
+      <div class="region-card amber">
+        <div class="region-head">Optimisation candidates</div>
+        <div class="region-sub">Engineering · Healthcare · Admin &amp; Ops</div>
+        <p style="font-size:12px;color:#555;line-height:1.55;margin-top:4px">Three functions where CTR is below the campaign average — opportunities to sharpen creative-audience fit and bid configuration in Month 2 to improve per-dollar engagement.</p>
+      </div>
+    </div>
+
+    <div class="insight-box watch"><strong>Engineering and Healthcare are the two functions where Month 2 sharpening would have the highest impact.</strong> Engineering ($12,895 spent, CTR 1.21%, $0.44 CPC) is a strategic priority pool but is running well below the campaign-average CTR — likely a creative-message fit issue rather than a delivery one. Healthcare ($6,363 spent, CTR 1.09%, 1 visible apply start) shows the weakest signal of any function — recommend a creative + audience targeting refresh ahead of May. These two together represent ~22% of spend and present the clearest creative-optimisation upside in Month 2.</div>
+  </div>
+
+  <!-- ============ 07 AUDIENCE ============ -->
+  <div class="panel" id="audience">
+    <div class="panel-header">
+      <div class="panel-eyebrow">07 · Audience signals</div>
+      <h2 class="panel-title">Who's responding — and what that tells us about the creative.</h2>
+      <p class="panel-sub">Audience analytics across age, gender, placement, and seniority are useful creative-direction signals. <em>Note: Meta does not allow age/gender targeting for employment ads; this view informs creative choices, not audience filters.</em></p>
+    </div>
+
+    <div class="section-title">Age engagement (Meta)</div>
+    <div class="two-col">
+      <div class="chart-wrap"><div class="chart-wrap-title">Impressions by age band</div><div class="chart-canvas short"><canvas id="age_imp"></canvas></div></div>
+      <div class="chart-wrap"><div class="chart-wrap-title">CTR by age band</div><div class="chart-canvas short"><canvas id="age_ctr"></canvas></div></div>
+    </div>
+    <div style="overflow-x:auto;margin-top:8px">
+      <table class="report">
+        <thead><tr><th>Age</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">CTR</th><th class="num">CPC</th></tr></thead>
+        <tbody>
+          <tr><td>18-24</td><td class="num">$7,368</td><td class="num"><strong>21.1M</strong></td><td class="num">0.89%</td><td class="num">$0.039</td></tr>
+          <tr><td>25-34</td><td class="num">$6,783</td><td class="num">7.8M</td><td class="num">1.13%</td><td class="num">$0.078</td></tr>
+          <tr><td>35-44</td><td class="num">$3,748</td><td class="num">2.4M</td><td class="num">1.80%</td><td class="num">$0.085</td></tr>
+          <tr><td>45-54</td><td class="num">$2,917</td><td class="num">1.7M</td><td class="num">2.06%</td><td class="num">$0.085</td></tr>
+          <tr><td>55-64</td><td class="num">$2,926</td><td class="num">1.4M</td><td class="num">2.25%</td><td class="num">$0.091</td></tr>
+          <tr><td>65+</td><td class="num">$4,270</td><td class="num">1.6M</td><td class="num" style="color:#00754a"><strong>2.35%</strong></td><td class="num">$0.115</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box"><strong>Creative direction read:</strong> Younger audiences (18-24) drive the largest impression volume but lowest CTR — typical scrolling behaviour. Engagement quality rises consistently with age — 65+ audience CTR is 2.6× that of 18-24. The creative is connecting strongest with mature professional audiences while still achieving meaningful younger-audience reach.</div>
+
+    <div class="section-title">Top Meta placements</div>
+    <div style="overflow-x:auto">
+      <table class="report">
+        <thead><tr><th>Placement</th><th class="num">Spend</th><th class="num">Impressions</th><th class="num">CTR</th><th class="num">CPC</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Instagram Reels</strong></td><td class="num">$16,036</td><td class="num"><strong>29.5M</strong></td><td class="num">0.88%</td><td class="num">$0.062</td></tr>
+          <tr><td>Ads on Facebook Reels</td><td class="num">$3,106</td><td class="num">0.86M</td><td class="num">1.17%</td><td class="num">$0.308</td></tr>
+          <tr><td>Facebook Reels</td><td class="num">$2,059</td><td class="num">1.27M</td><td class="num">1.02%</td><td class="num">$0.159</td></tr>
+          <tr><td>Native, banner &amp; interstitial</td><td class="num">$2,006</td><td class="num">3.13M</td><td class="num" style="color:#00754a">3.84%</td><td class="num" style="color:#00754a">$0.017</td></tr>
+          <tr><td>Instagram Stories</td><td class="num">$1,977</td><td class="num">0.27M</td><td class="num">1.29%</td><td class="num">$0.571</td></tr>
+          <tr><td>Facebook Stories</td><td class="num">$1,497</td><td class="num">0.27M</td><td class="num" style="color:#00754a"><strong>4.48%</strong></td><td class="num">$0.123</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box win"><strong>Placement standouts:</strong> Facebook Stories (4.48% CTR) and Native/banner (3.84% CTR) are the highest-engaging Meta placements. Instagram Reels delivers the bulk of reach but at lower engagement. Stories and feed-native formats are converting attention into clicks at much higher rates and are worth deliberate budget weighting in Month 2.</div>
+
+    <div class="section-title">LinkedIn seniority distribution</div>
+    <div style="overflow-x:auto">
+      <table class="report">
+        <thead><tr><th>Seniority</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">CTR</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td>Entry</td><td class="num"><strong>1,033K</strong></td><td class="num">9,387</td><td class="num">0.91%</td><td><span class="pill pill-blue">Volume</span></td></tr>
+          <tr><td>Senior</td><td class="num">479K</td><td class="num">4,293</td><td class="num">0.90%</td><td><span class="pill pill-blue">Strong volume</span></td></tr>
+          <tr><td>Manager</td><td class="num">122K</td><td class="num">1,047</td><td class="num">0.85%</td><td><span class="pill pill-blue">Steady</span></td></tr>
+          <tr><td>Director</td><td class="num">58K</td><td class="num">624</td><td class="num">1.07%</td><td><span class="pill pill-green">High engagement</span></td></tr>
+          <tr><td>VP</td><td class="num">29K</td><td class="num">323</td><td class="num">1.11%</td><td><span class="pill pill-green">High engagement</span></td></tr>
+          <tr><td>CXO</td><td class="num">18K</td><td class="num">262</td><td class="num" style="color:#00754a"><strong>1.42%</strong></td><td><span class="pill pill-green">Highest CTR</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box"><strong>Seniority pattern:</strong> Volume concentrates at Entry/Senior levels (~80% of impressions), but engagement quality rises with seniority — CXO and VP audiences click at 1.4× the entry-level rate. Encouraging signal for executive-talent attraction.</div>
+
+    <div class="section-title">Google device split</div>
+    <div class="three-col">
+      <div class="stat-box win"><div class="l">Mobile phones</div><div class="v">15.6M imp</div><div class="s">8.06% CTR · 847 apply starts</div></div>
+      <div class="stat-box hi"><div class="l">Tablets</div><div class="v">4.0M imp</div><div class="s">1.72% CTR · 11 apply starts</div></div>
+      <div class="stat-box hi"><div class="l">Computers</div><div class="v">29K imp</div><div class="s">2.92% CTR · 214 apply starts</div></div>
+    </div>
+    <div class="insight-box win"><strong>Mobile-first confirmed:</strong> Mobile dominates Google reach (94% of clicks) and converts at 79% of all Google apply starts — confirming mobile-first creative and landing-experience priorities for Month 2.</div>
+  </div>
+
+  
+  <!-- ============ 08 TOP ADS ============ -->
+  <div class="panel" id="topads">
+    <div class="panel-header">
+      <div class="panel-eyebrow">08 · Top performing creatives</div>
+      <h2 class="panel-title">The hardest-working ads of Month 1.</h2>
+      <p class="panel-sub">Highlighting the ads that delivered the strongest engagement (CTR) or volume (clicks) within each channel. These are the creative templates worth carrying forward and building variants around for Month 2. Click any ad to see the full-size creative.</p>
+    </div>
+
+    <div class="hero-quote">"117 ads ran across April. The six per channel below are the ones doing the heaviest lifting on engagement and volume — useful templates for Month 2 creative refresh."</div>
+
+    <!-- META -->
+    <div class="top-ads-section">
+      <div class="top-ads-section-head">
+        <div class="top-ads-section-title">
+          <span class="ch-icon meta">M</span>
+          Top by CTR · Meta
+        </div>
+        <div class="top-ads-section-sub">Min 10K impressions · ranked by CTR</div>
+      </div>
+      <div class="top-ads-grid" id="top-ads-meta"></div>
+    </div>
+
+    <!-- GOOGLE -->
+    <div class="top-ads-section">
+      <div class="top-ads-section-head">
+        <div class="top-ads-section-title">
+          <span class="ch-icon google">G</span>
+          Top by click volume · Google Display
+        </div>
+        <div class="top-ads-section-sub">Ranked by total clicks delivered</div>
+      </div>
+      <div class="top-ads-grid" id="top-ads-google"></div>
+    </div>
+
+    <!-- LINKEDIN -->
+    <div class="top-ads-section">
+      <div class="top-ads-section-head">
+        <div class="top-ads-section-title">
+          <span class="ch-icon linkedin">in</span>
+          Top by CTR · LinkedIn
+        </div>
+        <div class="top-ads-section-sub">Min 5K impressions · ranked by CTR</div>
+      </div>
+      <div class="top-ads-grid" id="top-ads-linkedin"></div>
+    </div>
+
+    <div class="insight-box win"><strong>What carries forward:</strong> The CTR leaders above give us creative archetypes that worked in Month 1. For Month 2, we recommend building variants around the top 3 templates per channel — preserving the message angle and visual treatment that resonated, while testing copy and asset variations to keep the audience engaged as scale increases.</div>
+
+    <div class="insight-box watch"><strong>Coverage note:</strong> This view shows the top 6 ads per channel from the 117 ads we have creative imagery for (Meta 29 · Google Display 19 · LinkedIn 69). Google Search and Bing run text-only ads and are not included by design. A small portion of Google Display spend (~14%) ran on campaigns where ad-level imagery isn't extracted into this view.</div>
+  </div>
+
+  <!-- ============ 09 APPLY STARTS ============ -->
+  <div class="panel" id="applies">
+    <div class="panel-header">
+      <div class="panel-eyebrow">09 · Conversion tracking</div>
+      <h2 class="panel-title">Apply Starts: 1,078 application starts tracked.</h2>
+      <p class="panel-sub">While this campaign is built around traffic and awareness (not conversions), Google's ad platforms passively track when a click lands on a careers page and an applicant begins an application. These numbers serve as a useful leading indicator of talent intent.</p>
+    </div>
+
+    <div class="insight-box" style="margin-top:0;margin-bottom:18px"><strong>Important context:</strong> Apply-start tracking is currently active <strong>only on Google channels (Display + Search) and a portion of LinkedIn</strong> where pixel-based conversion tracking is implemented. Meta, Bing, and most LinkedIn apply starts are not pixel-tracked. The numbers shown here represent a partial view — actual cross-channel volume is meaningfully higher. Treat as a directional indicator, not a complete conversion picture.</div>
+
+    <div class="section-title">By channel</div>
+    <div class="stat-strip">
+      <div class="stat-box win"><div class="l">Google Search</div><div class="v">922</div><div class="s">$10.79 cost per apply start</div></div>
+      <div class="stat-box hi"><div class="l">Google Display</div><div class="v">150</div><div class="s">view-through nature</div></div>
+      <div class="stat-box hi"><div class="l">LinkedIn</div><div class="v">6</div><div class="s">limited tracking</div></div>
+      <div class="stat-box"><div class="l">Total tracked</div><div class="v">1,078</div><div class="s">Google + LinkedIn</div></div>
+    </div>
+
+    <div class="section-title">By market</div>
+    <div class="chart-wrap" style="margin-bottom:14px">
+      <div class="chart-wrap-title">Apply starts by country</div>
+      <div class="chart-canvas short"><canvas id="conv_chart"></canvas></div>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table class="report">
+        <thead><tr><th>Market</th><th class="num">Spend (all channels)</th><th class="num">Apply starts</th><th class="num">Cost per apply</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td>🇮🇳 <strong>India</strong></td><td class="num">$15,501</td><td class="num"><strong>813</strong></td><td class="num" style="color:#00754a"><strong>$19</strong></td><td><span class="pill pill-green">Top conversion market</span></td></tr>
+          <tr><td>🇧🇷 <strong>Brazil</strong></td><td class="num">$7,320</td><td class="num">151</td><td class="num">$48</td><td><span class="pill pill-green">Strong</span></td></tr>
+          <tr><td>🇬🇧 <strong>UK</strong></td><td class="num">$4,762</td><td class="num">47</td><td class="num">$101</td><td><span class="pill pill-green">Best mature converter</span></td></tr>
+          <tr><td>🇨🇴 <strong>Colombia</strong></td><td class="num">$3,379</td><td class="num">33</td><td class="num">$102</td><td><span class="pill pill-blue">Steady</span></td></tr>
+          <tr><td>🇺🇸 <strong>USA</strong></td><td class="num">$29,253</td><td class="num">21</td><td class="num">$1,393</td><td><span class="pill pill-amber">Awareness phase</span></td></tr>
+          <tr><td>🇩🇪 <strong>Germany</strong></td><td class="num">$12,024</td><td class="num">7</td><td class="num">$1,718</td><td><span class="pill pill-amber">Awareness phase</span></td></tr>
+          <tr><td>🇫🇷 <strong>France</strong></td><td class="num">$14,866</td><td class="num">6</td><td class="num">$2,478</td><td><span class="pill pill-amber">Awareness phase</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box"><strong>What this signals:</strong> India is the standout volume contributor, while UK is the best-performing mature-market converter. Mature markets (USA, France, Germany) show higher visible CPAs that reflect both auction-cost dynamics and the awareness-phase mechanics typical of Month 1 — apply-start ramp in these markets is expected to compound through Months 2–3 as familiarity builds. <strong>Two opportunities worth flagging:</strong> (1) extending apply-tracking parity to Meta and Bing would close the largest visibility gap, particularly for USA where Meta is a major spend pillar; (2) establishing cost per apply start as a co-primary KPI would give the campaign a sharper conversion-side narrative.</div>
+
+    <div class="insight-box watch"><strong>Tracking gap to close before Month 2:</strong> Meta carries 32% of total campaign spend ($28K) with no pixel-based apply-start tracking. Bing ($5.5K) is also untracked. LinkedIn tracking is partial. Best estimate: <strong>true cross-channel apply-start volume is at least 1.5–2× the visible 1,078</strong>, with the largest gap in mature markets (USA, France, Germany) where Meta delivers a high share of spend. Implementing Meta apply-start tracking ahead of May 1 is the single highest-leverage operational fix for Month 2 — it changes the apply-side narrative across every market.</div>
+  </div>
+
+  <!-- ============ 10 OPPORTUNITIES ============ -->
+  <div class="panel" id="opportunities">
+    <div class="panel-header">
+      <div class="panel-eyebrow">10 · Optimisation opportunities</div>
+      <h2 class="panel-title">Five opportunities to sharpen Month 2.</h2>
+      <p class="panel-sub">Each opportunity below builds on Month 1's strong foundation. The geographic spend allocation continues as planned — these recommendations focus on creative, channel, function, and operational optimisations that compound the existing performance.</p>
+    </div>
+
+    <div class="opp-grid">
+      <div class="opp">
+        <div class="opp-h">Opportunity 1 · Channel mix</div>
+        <h4>Lean further into Google Display.</h4>
+        <p>Display is the most efficient click engine in the mix at $0.018 CPC and 6.74% CTR. There's clear runway to grow Display's share of the channel mix in Month 2 without breaking efficiency. Recommended: increase Display allocation by ~15% within the existing market-level budgets.</p>
+        <span class="opp-tag">Scale what's working</span>
+      </div>
+
+      <div class="opp">
+        <div class="opp-h">Opportunity 2 · Function mix</div>
+        <h4>Increase weight on Manufacturing, Operations, and Marketing function pools.</h4>
+        <p>These three functions delivered 5–7% CTR — well above the campaign average — on small budgets. Modest budget increases here would compound the high engagement signal without disturbing the larger Marketing &amp; Sales pool.</p>
+        <span class="opp-tag">Function-level optimisation</span>
+      </div>
+
+      <div class="opp">
+        <div class="opp-h">Opportunity 3 · Creative refresh</div>
+        <h4>Refresh top-performing Meta creative units and add seniority-targeted LinkedIn variants.</h4>
+        <p>Meta creative has been live for the full month — refreshing the top 2 units in Month 2 will protect against fatigue as spend scales. On LinkedIn, CXO/VP audiences engaged at 1.4% CTR (highest of all seniority bands) — a senior-targeted creative variant could compound that signal.</p>
+        <span class="opp-tag">Creative direction</span>
+      </div>
+
+      <div class="opp">
+        <div class="opp-h">Opportunity 4 · Placement weighting</div>
+        <h4>Weight more deliberately into Stories and Native placements on Meta.</h4>
+        <p>Facebook Stories (4.48% CTR) and Native/banner (3.84% CTR) are the highest-engaging Meta placements but received modest spend share. A deliberate weighting toward these formats in Month 2 could lift overall Meta CTR by ~30bps.</p>
+        <span class="opp-tag">Placement optimisation</span>
+      </div>
+
+      <div class="opp">
+        <div class="opp-h">Opportunity 5 · Tracking parity</div>
+        <h4>Implement Meta apply-start tracking before Month 2 launch.</h4>
+        <p>Meta accounts for $28K (32%) of campaign spend but currently has no pixel-based apply-start tracking. Implementing Meta tracking ahead of May would close the largest visibility gap and give a fairer cross-channel apply-start read — particularly for USA where Meta is the largest channel.</p>
+        <span class="opp-tag">Operational</span>
+      </div>
+    </div>
+
+    <div class="insight-box win"><strong>Geographic spend allocation continues as planned:</strong> NA at 34% (USA), EMEA at 35% (FR/DE/UK), APAC at 18% (India), and LATAM at 12% (BR/CO). The optimisations above operate within those market-level budgets to compound performance — they do not shift budget across markets.</div>
+  </div>
+
+  <!-- ============ 11 FORWARD ============ -->
+  <div class="panel" id="forward">
+    <div class="panel-header">
+      <div class="panel-eyebrow">11 · Looking ahead</div>
+      <h2 class="panel-title">Forward roadmap — Months 2 &amp; 3.</h2>
+      <p class="panel-sub">The campaign runs through Month 3. With Month 1 delivered to plan at $87K and the strong efficiency foundation established, Months 2 and 3 carry the larger budgets — $167K and $216K respectively — and represent the campaign's volume peak.</p>
+    </div>
+
+    <div class="section-title">Budget pacing across the campaign</div>
+    <div class="stat-strip" style="margin-bottom:18px">
+      <div class="stat-box win"><div class="l">Month 1 · April</div><div class="v">$87,105</div><div class="s">delivered · 20% target</div></div>
+      <div class="stat-box hi"><div class="l">Month 2 · May</div><div class="v">~$167K</div><div class="s">35% of total · scale-up</div></div>
+      <div class="stat-box hi"><div class="l">Month 3 · June</div><div class="v">~$216K</div><div class="s">45% of total · campaign peak</div></div>
+      <div class="stat-box"><div class="l">Total campaign</div><div class="v">$479K</div><div class="s">3-month always-on</div></div>
+    </div>
+
+    <div class="forward">
+      <div class="forward-row">
+        <div class="when">Pre-launch · Late April</div>
+        <div class="what">
+          <h5>Final week of Month 1 + Month 2 setup</h5>
+          <p>Complete W4 pacing taper. Lock Month 2 creative refresh. Implement Meta apply-start tracking ahead of May 1. Set up channel mix shifts (Display lean-in, Stories/Native placement weighting). Brief AB&amp;C on Engineering and Healthcare creative refresh direction.</p>
+        </div>
+      </div>
+      <div class="forward-row">
+        <div class="when">May · Month 2</div>
+        <div class="what">
+          <h5>Scale-up &amp; refine — 35% of campaign budget</h5>
+          <p>Step up to ~$167K spend. Apply the channel, function, creative, and placement optimisations identified above. Refresh top 2 Meta creative units. Add LinkedIn senior-targeting variants. Expected outcome: blended CTR holds above 2.5%, CPC stays below $0.06, apply-start visibility improves materially with Meta tracking live.</p>
+        </div>
+      </div>
+      <div class="forward-row">
+        <div class="when">Mid-May read</div>
+        <div class="what">
+          <h5>First clean optimisation read</h5>
+          <p>Evaluate whether Engineering and Healthcare CTR have lifted post-creative refresh. Confirm Display scale-up holding sub-2¢ CPC at higher volume. Adjust Stories/Native placement weighting based on first 2 weeks of May data. Decide on Bing continuation for Month 3 based on May efficiency curve.</p>
+        </div>
+      </div>
+      <div class="forward-row">
+        <div class="when">June · Month 3</div>
+        <div class="what">
+          <h5>Campaign peak &amp; close — 45% of campaign budget</h5>
+          <p>Largest single-month spend at ~$216K. Volume should peak across all metrics. Mature-market apply-start ramp expected to compound (USA, France, Germany) as awareness compounds into action. Final creative refresh on hardest-working units. Begin closing reporting on the 3-month campaign.</p>
+        </div>
+      </div>
+      <div class="forward-row">
+        <div class="when">End of Month 3</div>
+        <div class="what">
+          <h5>Campaign wrap-up &amp; final report</h5>
+          <p>3-month performance review with full cross-channel apply-start data (assuming Meta tracking is implemented from Month 2). Half-year EB measurement framework recommendation for Kenvue. Audience and function-mix learnings carried forward into any follow-on activation planning.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box win" style="margin-top:20px;text-align:center;font-size:14px"><strong>Bottom line:</strong> Month 1 has delivered exactly the foundation the always-on programme was built to establish — strong reach, exceptional efficiency, and meaningful engagement across every priority market, all delivered within the planned $92K envelope. <strong style="color:#00754a">Months 2 &amp; 3 carry the larger budgets and will compound on this working playbook.</strong></div>
+  </div>
+
+  <!-- ============ 12 TOP CREATIVES ============ -->
+  <div class="panel" id="topcreatives">
+    <div class="panel-header">
+      <div class="panel-eyebrow">12 · Top performing creatives</div>
+      <h2 class="panel-title">The hardest-working ads of Month 1.</h2>
+      <p class="panel-sub">Highlighting the ads that delivered exceptional engagement (CTR) or volume (clicks) within each channel. These are the creative templates worth carrying forward and building variants around for Month 2.</p>
+    </div>
+
+    <div class="section-title">🥇 Top by CTR · Meta (min 10K impressions)</div>
+    <div class="cards-grid" id="cr-top-meta-ctr"></div>
+
+    <div class="section-title">🚀 Top by click volume · Google Display</div>
+    <div class="cards-grid" id="cr-top-google-clk"></div>
+
+    <div class="section-title">💼 Top by CTR · LinkedIn (min 5K impressions)</div>
+    <div class="cards-grid" id="cr-top-linkedin-ctr"></div>
+
+    <div class="insight-box win" style="margin-top:20px"><strong>What carries forward:</strong> The CTR leaders below give us creative archetypes that worked. For Month 2, we recommend building variants around the top 3 templates per channel — preserving the message angle and visual treatment that resonated, while testing new copy and asset variations to keep the audience engaged as scale increases.</div>
+  </div>
+
+  <div class="footer">Joveo · Kenvue × AB&amp;C · Always-On Employer Brand · Monthly Business Review · April 2026 · Confidential</div>
+
+</div>
+
+<script>
+Chart.defaults.color='#6b6b66';Chart.defaults.font.family='DM Sans';
+
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+const G='#00a651',B='#0066cc',Y='#ef9f27',R='#d85a30',P='#7681E8',T='#1a8c8c',gridC='#e5e5e0';
+
+// 03 Daily chart
+const dailyData = [
+  ['Apr 2',409,2.91],['Apr 3',3208,3.05],['Apr 4',2379,4.33],['Apr 5',2659,4.08],['Apr 6',3801,2.18],
+  ['Apr 7',3435,2.10],['Apr 8',3214,2.54],['Apr 9',3085,2.55],['Apr 10',3111,2.99],['Apr 11',2961,3.12],
+  ['Apr 12',2783,3.25],['Apr 13',3007,2.90],['Apr 14',5828,5.63],['Apr 15',7084,4.21],['Apr 16',5434,2.79],
+  ['Apr 17',6072,2.45],['Apr 18',5762,2.60],['Apr 19',5985,2.53],['Apr 20',3972,3.26],['Apr 21',1176,1.51],
+  ['Apr 22',1299,1.55],['Apr 23',1438,1.74],['Apr 24',1326,1.72],['Apr 25',977,1.80],['Apr 26',1063,1.71],
+  ['Apr 27',1392,1.56],['Apr 28',1584,1.70],['Apr 29',1387,1.67],['Apr 30',1275,1.47]
+];
+new Chart(document.getElementById('daily_chart'),{
+  data:{labels:dailyData.map(d=>d[0]),
+    datasets:[
+      {type:'bar',label:'Spend ($)',data:dailyData.map(d=>d[1]),backgroundColor:'rgba(0,166,81,0.3)',borderColor:G,borderWidth:1,borderRadius:2,yAxisID:'y',order:2},
+      {type:'line',label:'CTR (%)',data:dailyData.map(d=>d[2]),borderColor:B,backgroundColor:'transparent',borderWidth:2,pointRadius:3,pointBackgroundColor:B,yAxisID:'y2',tension:0.2,order:1}
+    ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',align:'end',labels:{font:{size:11},boxWidth:10}}},
+    scales:{x:{ticks:{font:{size:9},maxRotation:60,minRotation:60},grid:{display:false}},
+      y:{position:'left',beginAtZero:true,ticks:{callback:v=>'$'+(v/1000).toFixed(1)+'K',font:{size:10}},grid:{color:gridC}},
+      y2:{position:'right',beginAtZero:true,ticks:{callback:v=>v+'%',font:{size:10}},grid:{display:false}}}}
+});
+
+// 04 Markets
+new Chart(document.getElementById('m_spend'),{type:'bar',
+  data:{labels:['USA','India','France','Germany','Brazil','UK','Colombia'],
+    datasets:[{data:[29253,15501,14866,12024,7320,4762,3379],backgroundColor:[B,P,Y,Y,G,Y,G],borderRadius:5,barThickness:28}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'$'+c.raw.toLocaleString()}}},
+    scales:{x:{beginAtZero:true,ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'K',font:{size:10}},grid:{color:gridC}},y:{ticks:{font:{size:10,weight:'500'}},grid:{display:false}}}}
+});
+new Chart(document.getElementById('m_ctr'),{type:'bar',
+  data:{labels:['Brazil','Colombia','India','France','Germany','UK','USA'],
+    datasets:[{data:[5.22,4.46,3.21,1.35,1.34,1.19,1.07],backgroundColor:[G,G,G,Y,Y,Y,B],borderRadius:5,barThickness:28}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'% CTR'}}},
+    scales:{x:{beginAtZero:true,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:gridC}},y:{ticks:{font:{size:10,weight:'500'}},grid:{display:false}}}}
+});
+
+// 05 Channels
+new Chart(document.getElementById('ch_spend'),{type:'doughnut',
+  data:{labels:['Meta ($28K)','Google Display ($23K)','LinkedIn ($20K)','Google Search ($10K)','Bing ($5.5K)'],
+    datasets:[{data:[28013,23304,20329,9948,5511],backgroundColor:[G,B,P,T,Y],borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'right',labels:{font:{size:10},padding:6,boxWidth:11}}}}
+});
+new Chart(document.getElementById('ch_clicks'),{type:'doughnut',
+  data:{labels:['Google Display (1.30M)','Meta (423K)','LinkedIn (70K)','Google Search (31K)','Bing (4.9K)'],
+    datasets:[{data:[1301817,422527,70440,31096,4919],backgroundColor:[B,G,P,T,Y],borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'right',labels:{font:{size:10},padding:6,boxWidth:11}}}}
+});
+
+// 06 Functions
+new Chart(document.getElementById('cat_chart'),{
+  data:{labels:['Marketing & Sales','Engineering','Finance','IT & Data','Healthcare','R&D','Admin & Ops','Procurement','Manufacturing','Marketing','Operations'],
+    datasets:[
+      {type:'bar',label:'Spend ($)',data:[35607,12895,8714,7845,6363,5886,3416,2033,1570,1413,1346],backgroundColor:'rgba(0,166,81,0.25)',borderColor:G,borderWidth:1,borderRadius:4,yAxisID:'y',order:2},
+      {type:'line',label:'Clicks (000s)',data:[261,29,219,732,7,389,24,52,30,39,46],borderColor:B,backgroundColor:'transparent',borderWidth:2.5,pointRadius:4,pointBackgroundColor:B,yAxisID:'y2',tension:0.2,order:1}
+    ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',align:'end',labels:{font:{size:11},boxWidth:10}}},
+    scales:{x:{ticks:{font:{size:10},maxRotation:30,minRotation:30},grid:{display:false}},
+      y:{beginAtZero:true,ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'K',font:{size:10}},grid:{color:gridC}},
+      y2:{position:'right',beginAtZero:true,ticks:{callback:v=>v+'K',font:{size:10}},grid:{display:false}}}}
+});
+
+// 07 Audience
+new Chart(document.getElementById('age_imp'),{type:'bar',
+  data:{labels:['18-24','25-34','35-44','45-54','55-64','65+'],
+    datasets:[{data:[21.08,7.76,2.44,1.66,1.43,1.58],backgroundColor:B,borderRadius:5,barThickness:34}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'M imp'}}},
+    scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{beginAtZero:true,ticks:{callback:v=>v+'M',font:{size:10}},grid:{color:gridC}}}}
+});
+new Chart(document.getElementById('age_ctr'),{type:'bar',
+  data:{labels:['18-24','25-34','35-44','45-54','55-64','65+'],
+    datasets:[{data:[0.89,1.13,1.80,2.06,2.25,2.35],backgroundColor:[Y,Y,P,P,G,G],borderRadius:5,barThickness:34}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'% CTR'}}},
+    scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{beginAtZero:true,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:gridC}}}}
+});
+
+// 08 Apply Starts
+new Chart(document.getElementById('conv_chart'),{type:'bar',
+  data:{labels:['India','Brazil','UK','Colombia','USA','Germany','France'],
+    datasets:[{data:[813,151,47,33,21,7,6],backgroundColor:[G,G,G,B,Y,Y,Y],borderRadius:5,barThickness:32}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+' apply starts'}}},
+    scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{beginAtZero:true,ticks:{font:{size:10}},grid:{color:gridC}}}},
+  plugins:[{id:'l',afterDraw:c=>{const x=c.ctx;c.data.datasets[0].data.forEach((v,i)=>{const m=c.getDatasetMeta(0).data[i];x.save();x.fillStyle='#1a1a1a';x.font='700 11px DM Sans';x.textAlign='center';x.fillText(v,m.x,m.y-6);x.restore()})}}]
+});
+
+// ============ Top Creatives tab ============
+const DATA = {"meta":[{"img":"https://scontent-fra5-2.cdninstagram.com/v/t51.71878-15/671742938_1639586514038668_3286987274643051764_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=MwDZd2Dm0cIQ7kNvwFe9atl&_nc_oc=AdqFsFDvuh8EbgyIaA_UEAF9nI0Q2X9jYFg0wZzh-gu1fix12A10OlEryCNnCMLMh2w&_nc_zt=23&_nc_ht=scontent-fra5-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=qjUkMCHJNAmuapso-njasw&oh=00_Af48RwgCoTD98mOXmYitTGjctwoMrv54V-_yTn6RXxWfUA&oe=6A010624","country":"USA","category":"Marketing & Sales","cost":2596.8142857142857,"imp":324276.0,"clk":3360.0,"ctr":1.0361543870036636,"cpc":0.7728613945578231,"reach":144458.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/682801940_1486395656483999_3225330596728866018_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=SJiQtpxtTuYQ7kNvwGwiclM&_nc_oc=AdqkVtY3l24KMRq_HyHJtdUoPjwL472L_WXwt99rKvdfeQAtzRO97oFkgDTObpwMKyI&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=VHF2MvoQaU_iKVcTXkuHrQ&oh=00_Af5R-VSPV8Fi8Y3HeLBD15PFNFsZoCwe4kwTdWYM_NyDWA&oe=6A010F67","country":"USA","category":"Marketing & Sales","cost":2434.1857142857143,"imp":296896.0,"clk":3460.0,"ctr":1.1653912481138178,"cpc":0.7035218827415359,"reach":171353.0},{"img":"https://scontent-fra5-1.cdninstagram.com/v/t51.71878-15/684149362_1864991024210993_5459648286530833841_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=2M2vRTiAZmkQ7kNvwHUxM7n&_nc_oc=AdpM7FLwxYk_KrI6tXuKFRsxp6bDq3TCBKiQ4k2sbVM2douie7P3XDTkfLx4x17uVVA&_nc_zt=23&_nc_ht=scontent-fra5-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=LFjiamzMUKBPyrhUWxvsdg&oh=00_Af66_yHSDK1PLGkTfxgZlh6DMbjr5LmVVBQdARkr1bH8pQ&oe=6A01174A","country":"USA","category":"Engineering","cost":2124.385714285714,"imp":274572.0,"clk":3012.0,"ctr":1.0969800270967178,"cpc":0.7053073420603301,"reach":146291.0},{"img":"https://scontent-fra3-2.cdninstagram.com/v/t51.71878-15/684145200_921469187533386_2185973440813319726_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=aU5vYl2-FlcQ7kNvwEFzADh&_nc_oc=Adr_x6x6z_IA8Kl6Y8pi32ftLzox-3B5X0I_QusqMGifvFv1vim-IG4BW8WAq16XTxk&_nc_zt=23&_nc_ht=scontent-fra3-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=1KI6ZE_T6il_8iMh7txvLA&oh=00_Af6VQ7K-AjysOIKsIUg8wWezRHPF42bNOXd77vAlJpig1Q&oe=6A010A54","country":"France","category":"Marketing & Sales","cost":1941.3714285714286,"imp":376966.0,"clk":6589.0,"ctr":1.7479029939039596,"cpc":0.29463824989701454,"reach":239844.0},{"img":"https://scontent-fra5-2.cdninstagram.com/v/t51.71878-15/681238015_1627360375146862_7389094093176868613_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=MlUzIGUEQjwQ7kNvwHXeDcP&_nc_oc=AdqkvLiTOyNvXsfsqkH6N9QTufNfiL1uKBnhKJfTtHGLGChqqBHUTz9GFhBcBsNcf8c&_nc_zt=23&_nc_ht=scontent-fra5-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=65Ukw7m4tW36aTNyIs1gwA&oh=00_Af7H94FgmjXA5xAb-Sp4mpBR7tDppptk4TCnhDp41bel7Q&oe=6A011814","country":"Germany","category":"Marketing & Sales","cost":1817.457142857143,"imp":232672.0,"clk":2970.0,"ctr":1.2764750378214826,"cpc":0.611938431938432,"reach":102151.0},{"img":"https://scontent-fra5-1.cdninstagram.com/v/t51.71878-15/683658632_1546037487307589_2976873383662246033_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=XYnPZOTZ33UQ7kNvwGndFQp&_nc_oc=AdpNLuULnOxU82WjIVpjcPieupyYJv6Y-3qFIlckQ8zyoGnXRjnK5tb2PCbCvHQSICQ&_nc_zt=23&_nc_ht=scontent-fra5-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=1bzha2K9Wn8X-oF8ftaOQw&oh=00_Af4baGzqWCvba42DIDOoDeAnm2yu-4RhVBv681gV-wtMvA&oe=6A011BF9","country":"France","category":"Admin & Ops","cost":1522.7000000000003,"imp":360620.0,"clk":5563.0,"ctr":1.5426210415395707,"cpc":0.2737192162502248,"reach":207947.0},{"img":"https://scontent-fra3-2.cdninstagram.com/v/t51.71878-15/683417843_946420028103582_744468592314199634_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=Afi-XqTj004Q7kNvwFFHdfk&_nc_oc=Adot_D8dapGHskPyyhZA62Xu8dDajRJvpqi3o4SBvAk5f4_EqF7yYFJXh55BQa2V0A0&_nc_zt=23&_nc_ht=scontent-fra3-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=zmAQelPeZPEfY4bEy6OsUg&oh=00_Af4r8FQRaasT7bGOqZnemJp7wohz7cpWr6m60NOWG-Vrxg&oe=6A00FDED","country":"France","category":"Engineering","cost":1518.642857142857,"imp":375150.0,"clk":5449.0,"ctr":1.4524856723977075,"cpc":0.2787012033662795,"reach":220130.0},{"img":"https://scontent-fra5-2.cdninstagram.com/v/t51.71878-15/682636876_2317360618755274_5985868419550384610_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=0Bd4SE3P0WoQ7kNvwF3ALPo&_nc_oc=Ado_uOSNLTu8qfKJQJ6CJjNpivQbSkZVQGkWDE21HThd2akRyzREgS4KkcUXvwQehcU&_nc_zt=23&_nc_ht=scontent-fra5-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=TFpp7VDxb1pQofciJpewDQ&oh=00_Af5obAzG7NguAD6swAkjPGrrK11RMCdWWzUcNyVBJn1WbA&oe=6A0110B0","country":"India","category":"IT & Data","cost":1446.1285714285714,"imp":11160481.0,"clk":104851.0,"ctr":0.9394845974828505,"cpc":0.013792224885109073,"reach":2249051.0},{"img":"https://scontent-fra5-1.cdninstagram.com/v/t51.71878-15/681488516_2779811852367170_1476211212562110739_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=AkQEjrezQqQQ7kNvwGD9qfD&_nc_oc=AdoXewCc53Pfni2isCarDaQIl27CE2eIEJm8BEXZ6w2Xsw1KyJfaLRDzdT4ZeahSwWU&_nc_zt=23&_nc_ht=scontent-fra5-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=KwOv4rhTxn18zJwQNJ56Hw&oh=00_Af6lSqf87x03x65Zfc7V6I7LzGjnutbIq_jnUOJurQWzKw&oe=6A010AB2","country":"USA","category":"Healthcare","cost":1318.4571428571428,"imp":166763.0,"clk":1648.0,"ctr":0.9882288037514317,"cpc":0.8000346740638002,"reach":86285.0},{"img":"https://scontent-fra3-2.cdninstagram.com/v/t51.71878-15/675489431_798932019687713_5639377678033151039_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=UvAHfZgYD2cQ7kNvwGQxy6r&_nc_oc=Adp1Uaa3ECWZx9ENoT370pHj1P3LV45QJoRYNwZs1yllDfGwp_4NHqcHk-Z9AhS7FWA&_nc_zt=23&_nc_ht=scontent-fra3-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=1nnn6H2kykvJfZH5Nz8dcA&oh=00_Af7cz68brv5pPw9bbiWeHazP1oUAqWx8OdeKwdyxImOrUw&oe=6A00EF9C","country":"Germany","category":"Marketing & Sales","cost":1303.642857142857,"imp":204166.0,"clk":2206.0,"ctr":1.0804933240598338,"cpc":0.590953244398394,"reach":93119.0},{"img":"https://scontent-fra3-2.cdninstagram.com/v/t51.71878-15/671810345_971545728816322_6225217427675619023_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=yrQCadGw-9cQ7kNvwH6YZHh&_nc_oc=AdrLM4XPUllKVu9JyfobRNxJBTVnYap2Mq2fdnmpA2rnHikI_sNxndD-a8vTm_G0wto&_nc_zt=23&_nc_ht=scontent-fra3-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=lJSGY9tkN6M8k2LZuBzGIg&oh=00_Af6RUJdkZqFtK2Yc2t0mHXMp7SJBauPjkTRv2PUe3CiDSw&oe=6A00E8AE","country":"USA","category":"Healthcare","cost":1191.6285714285714,"imp":143285.0,"clk":1737.0,"ctr":1.2122692535855115,"cpc":0.6860268114154124,"reach":105980.0},{"img":"https://scontent-fra3-2.cdninstagram.com/v/t51.71878-15/671239297_2209536713190950_847697216299000541_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=s-d_bZlCuUgQ7kNvwFIwrDT&_nc_oc=Adqw1Zk-ZSL3Lh1iADZ-9xsKe5D9OSxWrPQX-Qt22W-tO9U7Ji2fXaG-41a7FbOKpvQ&_nc_zt=23&_nc_ht=scontent-fra3-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=Agq4fZEryjH4t6HIkfZF4w&oh=00_Af4q1L9SMe6rOBNNVilpKND98D2YWhMDm2a_2GHqQw38SA&oe=6A01137A","country":"India","category":"IT & Data","cost":1056.2714285714285,"imp":5989628.0,"clk":74275.0,"ctr":1.240060317602362,"cpc":0.014221089580227917,"reach":2431656.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/673825035_1477917654040792_1571995624839891996_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=dHOyO-05Q34Q7kNvwGOIZFP&_nc_oc=AdoXu-qeJLhAKis0d4jb9Rtpu1FpNLRgIf2HaEMkz3oQaYs1aOS42Q09RV_yJEn5y6U&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=PV1G9vZHX12Fhf_QxBmSFA&oh=00_Af48baARz8dVUMJKwqZg69kvNorwMP8C4AzRfJtGoVqJ6Q&oe=6A00EF6F","country":"USA","category":"Engineering","cost":1009.1285714285714,"imp":121163.0,"clk":1398.0,"ctr":1.1538175845761496,"cpc":0.7218373186184345,"reach":91803.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/681995048_1507244627626428_2062791689379989_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=eJ9OYQpPDhQQ7kNvwEU7KoI&_nc_oc=AdpOzLnxWYVxagjzEirffWbxavdpm1060Kfq-fGid3sNRIj1obPAaNIdqpxH69kt0xs&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=5TcnjdObvtPRApph_tCwCQ&oh=00_Af5w5R1yXoIeyGPrYyzzI6OoVIOuNsOY8_M4ekUNdbscuQ&oe=6A011386","country":"India","category":"R&D","cost":912.1142857142858,"imp":5927564.0,"clk":63262.0,"ctr":1.0672512350773438,"cpc":0.014418043781642784,"reach":2008484.0},{"img":"https://scontent-fra5-2.cdninstagram.com/v/t51.71878-15/659796781_895640343499670_7370295640873762489_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=106&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=JNqL1gx4rhEQ7kNvwHaPf3z&_nc_oc=AdoZhuPThVifhj7EXau1-1m8yxm5knGmGA1YUqcqyGoPfLwXHTlEi-r33Ul_Z7P5RbE&_nc_zt=23&_nc_ht=scontent-fra5-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=-t7gmxWai1B5c5HUULkoJQ&oh=00_Af4fBkp5N7A1UKQBdaOFzKcc92Hrg0unfpUXW0MIV59Law&oe=6A00E88D","country":"USA","category":"Finance","cost":808.4714285714285,"imp":115644.0,"clk":1137.0,"ctr":0.9831897893535333,"cpc":0.7110566654102274,"reach":68038.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/684167997_1361252049161673_9058255396628668878_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=nYhUMoQf3K0Q7kNvwF_QEmC&_nc_oc=AdrdApvA5dYTDH3uFj7G5l7XnacgulDxhK9hMfRFPAl5g32OzX8huQhRDM667NwlGUM&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=do8GfeN8bcoW4arm27j6IQ&oh=00_Af44pd1QOPvDgou8NN1OYddvNvOhqEu-mk8u1yqaAy-Mqg&oe=6A01185F","country":"India","category":"Marketing & Sales","cost":595.4714285714285,"imp":3869076.0,"clk":42026.0,"ctr":1.0862024938253991,"cpc":0.014169119796588506,"reach":1492499.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/683676262_4371360466513999_3825058352477210888_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzIifQ%3D%3D&_nc_ohc=1vAxhMDWwfwQ7kNvwGNLFfS&_nc_oc=AdoNS98T0S-APjCF7DN-5LRlmLSK4ZwetsWrIX_n4Aie5hY2X1xQqIbGquB5mRLgGzQ&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=-4-NwhV9Ecfl2HnW9pmmvw&oh=00_Af7vSrCeAGUHimgZEuX35A-pGpSd9yk1Fe1smSFqNI0fOg&oe=6A010EC8","country":"UK","category":"Marketing Sales & Regulatory Affairs","cost":568.6714285714286,"imp":119451.0,"clk":1235.0,"ctr":1.0338967442717097,"cpc":0.4604626951995373,"reach":56254.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/670619031_2498012920649992_8395297806133475433_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=F6l27xe3euIQ7kNvwE9YZSO&_nc_oc=Adpyo8qv6E6mmhPiU0WYeEtq7lR4g3Td_Vf2ggBGvXKwcbNdxzLWdpGXqfiBLhELcbU&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=2mslXeo8OiB-HIgPcuRJnQ&oh=00_Af47V-N9rQf0id3wCoqR1ATuftmbVb_85Lgs8APfe9BLcw&oe=6A0109AC","country":"Brazil","category":"Finance","cost":491.4428571428571,"imp":253924.0,"clk":7025.0,"ctr":2.7665758258376525,"cpc":0.06995627859684798,"reach":161406.0},{"img":"https://scontent-fra5-1.cdninstagram.com/v/t51.71878-15/682062439_938444158990160_3895811029116119913_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=ySkDBmNh91EQ7kNvwFuE_0h&_nc_oc=Adr-t8zRr0f_fHV0W8ZnB6rykwE9kSBZes379h69be5OQwbrekd8l5WFBGO_eUgRAHw&_nc_zt=23&_nc_ht=scontent-fra5-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=WFeXykBQhC2DBRUkL2p2AA&oh=00_Af5tqFE2JQOQH_dTOxzumpd5E8ilLHib3J6I9TAmbqelFw&oe=6A00EA2A","country":"India","category":"Finance","cost":472.87142857142857,"imp":3235515.0,"clk":34786.0,"ctr":1.075130234290368,"cpc":0.013593728182930736,"reach":1299077.0},{"img":"https://scontent-fra3-2.cdninstagram.com/v/t51.71878-15/671790105_910316575358697_1331515501638169189_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=TllYmD1PbkkQ7kNvwHiR_kT&_nc_oc=AdpMFR1PzVSp-sQN33sTpZnmdzetp0xkaFy9uCUZjR4OS4vRfsFC8snaaqy-zEpV0TM&_nc_zt=23&_nc_ht=scontent-fra3-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=M0bT2reBWKN6vzx0Cg9tpA&oh=00_Af4zWhfp28yTenMpx9MyZ359dVSjLoGGg1n502ZGgM3hOg&oe=6A00ECF0","country":"USA","category":"Finance","cost":456.47142857142853,"imp":53415.0,"clk":653.0,"ctr":1.2225030422166059,"cpc":0.6990374097571647,"reach":43636.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/671774236_1956562228326121_5544036706725891504_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=fKP1EewMs2EQ7kNvwFiSQvc&_nc_oc=AdobT9OVr0bD3PXh_AbRDD19S-wMzoakEr0le0yayRMARq5v3EAmi9c99lV2EMVLY08&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=YlNFEfhXGSiL6g6okqMgIA&oh=00_Af4K4wS442W4Ox99ob3_iWq7_3fMKh2oSENoptFivhKOhQ&oe=6A00FC20","country":"Brazil","category":"Manufacturing","cost":436.0571428571429,"imp":223110.0,"clk":4618.0,"ctr":2.069831025054906,"cpc":0.0944255398131535,"reach":91705.0},{"img":"https://scontent-fra3-2.cdninstagram.com/v/t51.71878-15/671808732_1686019782554408_6810892914698873377_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=qz1MiMfxGNQQ7kNvwExMYE1&_nc_oc=Adqv6JH3c1aocwHEvAxGWGQtVQGWlfsaEVazXqn-KBCS2Jqmx4THS68K_rggHF2fr1s&_nc_zt=23&_nc_ht=scontent-fra3-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=jdYZgSDOg4r0Pdu7c49dIg&oh=00_Af76v3fgyob8mB6HABK_yVdyCcyU7OM2ijLw4rpzPhQ-AA&oe=6A010466","country":"Brazil","category":"Marketing","cost":366.1142857142857,"imp":182885.0,"clk":5119.0,"ctr":2.7990267107745304,"cpc":0.07152066530851449,"reach":127967.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/671105513_3266582656835927_3874712608186021711_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=OlVr2BeR6WEQ7kNvwFuIt_D&_nc_oc=AdpAXZ6L0tw_wpGAn1c1P7m2WChywTgJ7r9_roOk3S-ZpyEl6xyxlyScu4WTPK1bpFQ&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=FrtYOAY27eaDcLfLo6xoMg&oh=00_Af6jJWed2AZ42tOC2kfqV75O2snZybxpCizSbu7Rxf0sVA&oe=6A00EAA0","country":"Brazil","category":"R&D","cost":362.34285714285716,"imp":187357.0,"clk":3720.0,"ctr":1.9855142855617884,"cpc":0.09740399385560676,"reach":79387.0},{"img":"https://scontent-fra5-2.cdninstagram.com/v/t51.71878-15/670982624_1282130836691768_7204449547029260215_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=K3cSxxHWM18Q7kNvwFyR5Oj&_nc_oc=AdodapbPAK8FxgFJoH_NYlFQ6fDBWczkG5thUh2YXTaAcLIcPr-Y5ynSXbQkDfDjc5U&_nc_zt=23&_nc_ht=scontent-fra5-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=UzV_mfw32tSzAQcgRQnKYw&oh=00_Af4Dj2niLqpNNats9fzRPVLHw0Vc-kaZdBhmhl1WmM8w-w&oe=6A00F937","country":"India","category":"R&D","cost":324.4142857142857,"imp":1121223.0,"clk":31345.0,"ctr":2.795608010181739,"cpc":0.01034979376979696,"reach":499548.0},{"img":"https://scontent-fra5-1.cdninstagram.com/v/t51.71878-15/671731465_1440760980590858_8493156069820651957_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=8rwRHAN4n_0Q7kNvwGL7Ar5&_nc_oc=Ado6t43fHhx1h5V-oKmT1bgs2295OtVYK7FlAhXhJ-smZTIaE51X1CPDdRVbfNRRb4s&_nc_zt=23&_nc_ht=scontent-fra5-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=SdtETyrCqgJAYbnAlX3SlA&oh=00_Af59GUDof-Y9_-SVVkpyF5HUfAtwQmgeS_fEPEF7lBRfIA&oe=6A00FC4A","country":"Colombia","category":"Procurement","cost":304.6714285714286,"imp":226567.0,"clk":4793.0,"ctr":2.115489016494017,"cpc":0.06356591457780693,"reach":59235.0},{"img":"https://scontent-fra5-2.cdninstagram.com/v/t51.71878-15/673829407_966856299044375_3309335612717052667_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=k-0l0huL4eAQ7kNvwFXW--_&_nc_oc=AdpfVwOgFWOFiZ8AKfsPeTR0wdE86lEF3siGTtqISjXF40fJjHqK0ULaxV0CkdNQGMk&_nc_zt=23&_nc_ht=scontent-fra5-2.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=7iqj_VGU1xmxQBNXfwFwZw&oh=00_Af6dig_4YybUOkTPs3YQH8g-Htj6394chcYqbp8L6Mju9Q&oe=6A00F1D6","country":"Colombia","category":"Operations","cost":303.1428571428571,"imp":215503.0,"clk":4977.0,"ctr":2.30948061047874,"cpc":0.06090875168632853,"reach":59475.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/673090568_2146021289566921_5109892544844703602_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=jBxo1kmMo_4Q7kNvwFrKc3L&_nc_oc=AdpHvV98BXeNhJkExjs0mdXSqqJXYvrZPnsIZhUFLmqpAU1lu1pOoUc6ZKT3-A8lQco&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=N9WxujIY0LMIRZ15vyciyg&oh=00_Af5QUAQNpdmiuwpknSj4o9zPkz9S4f_0QnxMywrX6o2vLA&oe=6A00F8D8","country":"UK","category":"Marketing Sales & Regulatory Affairs","cost":300.31428571428575,"imp":45658.0,"clk":626.0,"ctr":1.3710631214683078,"cpc":0.4797352806937472,"reach":34604.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/670295192_1662682801546995_5335963579541120174_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=WAJCde7MuB0Q7kNvwEjz2do&_nc_oc=Adom2esciHxJf8OayYFlyoHnAOiIF7uxswPmmJQLOZjYdvQbcK0LEl-4L5F1PuEHbQU&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=8QmA98zdEavRn3C8Mw6q_Q&oh=00_Af48aBc9EZePgUuH7_UVpA8eZzet4x7k92AfbJLkBWpLXQ&oe=6A00FA0D","country":"India","category":"Finance","cost":29.185714285714287,"imp":128854.0,"clk":666.0,"ctr":0.5168640476818724,"cpc":0.04382239382239382,"reach":126044.0},{"img":"https://scontent-fra3-1.cdninstagram.com/v/t51.71878-15/671813813_982951397465864_2390388899911704468_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQUQuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=b_3PUL69GXIQ7kNvwEsJMvo&_nc_oc=Adoz49q3xCWW_KnNOe8f4OtnC2ZYiZtb431msh6hyHZ0LZbtufj0PHSQB9pvpbi1_9Q&_nc_zt=23&_nc_ht=scontent-fra3-1.cdninstagram.com&edm=AEQ6tj4EAAAA&_nc_gid=2zqLIQIhb9Aq7cJ6-yF1OA&oh=00_Af56mSaix6TfehQjqGgzkSPDkiYXmqfxm17rKXhzcoCS1A&oe=6A00E7CF","country":"India","category":"Marketing & Sales","cost":0.15714285714285714,"imp":2733.0,"clk":21.0,"ctr":0.7683863885839737,"cpc":0.007482993197278911,"reach":2664.0}],"google":[{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"USA","category":"Marketing & Sales","cost":2404.0119999999997,"imp":474173.0,"clk":5677.0,"ctr":1.1972423566925996,"cpc":0.42346521049850266,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/756519897336340863","country":"Germany","category":"Marketing & Sales","cost":2139.5282857142856,"imp":2289359.0,"clk":30894.0,"ctr":1.3494607005716448,"cpc":0.06925384494446447,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"USA","category":"Engineering","cost":2019.9557142857143,"imp":384042.0,"clk":4624.0,"ctr":1.2040349753412387,"cpc":0.43684163371230844,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"India","category":"IT & Data","cost":1761.3985714285716,"imp":3617343.0,"clk":450671.0,"ctr":12.458619489498231,"cpc":0.003908391202071071,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"USA","category":"Healthcare","cost":1712.814,"imp":286376.0,"clk":3606.0,"ctr":1.2591837304802078,"cpc":0.47499001663893514,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/14258585922055180453","country":"France","category":"Marketing & Sales","cost":1501.2487142857144,"imp":1057232.0,"clk":15124.0,"ctr":1.4305280203399064,"cpc":0.09926267616276874,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/14258585922055180453","country":"France","category":"Admin & Ops","cost":1387.235,"imp":960033.0,"clk":14044.0,"ctr":1.4628663806348323,"cpc":0.098777769866135,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/14258585922055180453","country":"France","category":"Engineering","cost":1047.3988571428572,"imp":743678.0,"clk":10127.0,"ctr":1.36174527147502,"cpc":0.10342637080506144,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"India","category":"R&D","cost":922.9157142857143,"imp":1833756.0,"clk":231585.0,"ctr":12.628997532932406,"cpc":0.0039852136981484735,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"UK","category":"Marketing Sales & Regulatory Affairs","cost":727.6461428571429,"imp":686586.0,"clk":8544.0,"ctr":1.244418033574818,"cpc":0.08516457664526485,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"USA","category":"Finance","cost":665.8341428571429,"imp":134755.0,"clk":1440.0,"ctr":1.0686059886460615,"cpc":0.46238482142857146,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/51402249824605476","country":"Brazil","category":"Finance","cost":519.7457142857143,"imp":352639.0,"clk":29369.0,"ctr":8.328347119859119,"cpc":0.01769708584853806,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"India","category":"Finance","cost":506.427,"imp":1059583.0,"clk":115241.0,"ctr":10.876071058142685,"cpc":0.004394503692262302,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/51402249824605476","country":"Brazil","category":"Marketing","cost":502.13485714285713,"imp":333106.0,"clk":29749.0,"ctr":8.930790799325141,"cpc":0.01687904995606095,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/51402249824605476","country":"Brazil","category":"Manufacturing","cost":481.552,"imp":319541.0,"clk":22518.0,"ctr":7.046983016263954,"cpc":0.02138520294875211,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/51402249824605476","country":"Colombia","category":"Procurement","cost":428.6237142857143,"imp":430108.0,"clk":37799.0,"ctr":8.788257832916385,"cpc":0.011339551688820188,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/51402249824605476","country":"Colombia","category":"Operations","cost":413.4897142857143,"imp":408122.0,"clk":36601.0,"ctr":8.968151680134861,"cpc":0.011297224509868973,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/3112261947371693158","country":"India","category":"Marketing & Sales","cost":413.27857142857147,"imp":831773.0,"clk":106336.0,"ctr":12.784257243262283,"cpc":0.0038865348652250553,"reach":0},{"img":"https://tpc.googlesyndication.com/simgad/51402249824605476","country":"Brazil","category":"R&D","cost":396.46285714285716,"imp":260350.0,"clk":18348.0,"ctr":7.047436143652776,"cpc":0.021607960384938802,"reach":0}],"linkedin":[{"img":"https://media.licdn.com/dms/image/v2/D5610AQHzmaoEHKThzA/image-shrink_1280/B56ZzAEwKSHUAo-/0/1772748997594/English41200x1200PNG?e=1778680800&v=beta&t=rJ85viBYW6DSxBihgJgr1nFqbL_SVo5QtuIW6UnUtc8","country":"USA","category":"Marketing & Sales","cost":1473.0762857142856,"imp":18463.0,"clk":399.0,"ctr":2.1610789145859286,"cpc":3.6919205155746506,"reach":3433.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGfODq1EDe-3Q/image-shrink_1280/B56Z00AcbxKgAc-/0/1774694025176/English2720x1280PNG?e=1778680800&v=beta&t=zruHac6t9WrF1TaZ_oTyvXfKjQSv-OG912tnM9v5BPs","country":"USA","category":"Engineering","cost":1385.8978571428572,"imp":15222.0,"clk":268.0,"ctr":1.7606096439364078,"cpc":5.171260660980811,"reach":2766.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEfHeD-MLyAoA/image-shrink_1280/B56Z00AchrJsAc-/0/1774694025558/English21280x720PNG?e=1778680800&v=beta&t=hmbfz4LRy-l7Ep7YyygIea4jYNqc5azveQwQ31fcvE4","country":"UK","category":"Marketing Sales & Regulatory Affairs","cost":1295.6947142857143,"imp":22109.0,"clk":687.0,"ctr":3.107331855805328,"cpc":1.8860185069661053,"reach":3880.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFK2rzIo05nPA/image-shrink_1280/B56Z00AcXwK4Ac-/0/1774694025488/English21920x1080PNG?e=1778680800&v=beta&t=22WQE7kiFklUEDwQC6CbUyky7cW1ns9buqCWQQP91UA","country":"USA","category":"Healthcare","cost":1256.3084285714285,"imp":16689.0,"clk":255.0,"ctr":1.5279525435915873,"cpc":4.926699719887955,"reach":2616.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFK2rzIo05nPA/image-shrink_1280/B56Z00AcXwK4Ac-/0/1774694025488/English21920x1080PNG?e=1778680800&v=beta&t=22WQE7kiFklUEDwQC6CbUyky7cW1ns9buqCWQQP91UA","country":"USA","category":"Finance","cost":1153.7172857142857,"imp":12936.0,"clk":255.0,"ctr":1.971243042671614,"cpc":4.524381512605042,"reach":2471.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHA1_t8ber9RA/image-shrink_1280/B56Z00BmDAJIAc-/0/1774694326684/French720x900png?e=1778680800&v=beta&t=lkHMjGSQKp2u3eduRzt7eu4C5ZSBlGBah1-k3tFAB_c","country":"France","category":"Marketing & Sales","cost":1035.1495714285713,"imp":48852.0,"clk":940.0,"ctr":1.9241791533611725,"cpc":1.1012229483282674,"reach":18408.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHzmaoEHKThzA/image-shrink_1280/B56ZzAEwKSHUAo-/0/1772748997594/English41200x1200PNG?e=1778680800&v=beta&t=rJ85viBYW6DSxBihgJgr1nFqbL_SVo5QtuIW6UnUtc8","country":"India","category":"IT & Data","cost":897.9707142857144,"imp":1251115.0,"clk":16521.0,"ctr":1.3205021121159926,"cpc":0.05435329061713664,"reach":577368.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGR7FTwmjlBJg/image-shrink_1280/B56Z00CROsJ8Ac-/0/1774694503573/German1440x400PNG?e=1778680800&v=beta&t=YiQjWhf3Ek-uyVSNqKz_uWEmrVQ-Tgdj_dV2lI8-Oss","country":"Germany","category":"Marketing & Sales","cost":718.9071428571428,"imp":12714.0,"clk":242.0,"ctr":1.9034135598552777,"cpc":2.9706906729634004,"reach":5113.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHENhamLV5OQQ/image-shrink_1280/B56Z00BmDHJ8Ag-/0/1774694326682/French768x1024png?e=1778680800&v=beta&t=3e9Jard5bN07h893bmr-QsbJ-e-1h-JQ4rigN2eqJOU","country":"France","category":"Engineering","cost":707.4308571428571,"imp":29386.0,"clk":491.0,"ctr":1.6708636765806848,"cpc":1.4407960430608089,"reach":12259.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFK2rzIo05nPA/image-shrink_1280/B56Z00AcXwK4Ac-/0/1774694025488/English21920x1080PNG?e=1778680800&v=beta&t=22WQE7kiFklUEDwQC6CbUyky7cW1ns9buqCWQQP91UA","country":"India","category":"R&D","cost":431.62714285714287,"imp":561857.0,"clk":7414.0,"ctr":1.319552839957498,"cpc":0.0582178503988593,"reach":189539.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEfHeD-MLyAoA/image-shrink_1280/B56Z00AchrJsAc-/0/1774694025558/English21280x720PNG?e=1778680800&v=beta&t=hmbfz4LRy-l7Ep7YyygIea4jYNqc5azveQwQ31fcvE4","country":"India","category":"IT & Data","cost":430.32685714285714,"imp":613709.0,"clk":6166.0,"ctr":1.00471070165176,"cpc":0.06979027848570502,"reach":331562.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQH3Wm7mvMfjdw/image-shrink_1280/B56Z00CRTcJgAg-/0/1774694503966/German1280x720PNG?e=1778680800&v=beta&t=tDsC4PlrKXE4r1zPgg-DRrOPNiEpk7bQY1Ek0KlMzM0","country":"Germany","category":"Marketing & Sales","cost":369.2098571428572,"imp":6731.0,"clk":120.0,"ctr":1.7827960184222256,"cpc":3.0767488095238096,"reach":2960.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEoFTP8aXTOXg/image-shrink_1280/B56Z00CRRbKsAg-/0/1774694503750/German720x900PNG?e=1778680800&v=beta&t=BOYUrwFcP3qslE32_QlGC1bmH-SnbJ4D6GfpTvMz82E","country":"Germany","category":"Marketing & Sales","cost":364.322,"imp":8209.0,"clk":145.0,"ctr":1.7663540017054453,"cpc":2.5125655172413794,"reach":3453.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFK2rzIo05nPA/image-shrink_1280/B56Z00AcXwK4Ac-/0/1774694025488/English21920x1080PNG?e=1778680800&v=beta&t=22WQE7kiFklUEDwQC6CbUyky7cW1ns9buqCWQQP91UA","country":"USA","category":"Engineering","cost":327.4564285714286,"imp":5153.0,"clk":73.0,"ctr":1.4166504948573646,"cpc":4.485704500978474,"reach":1307.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGfODq1EDe-3Q/image-shrink_1280/B56Z00AcbxKgAc-/0/1774694025176/English2720x1280PNG?e=1778680800&v=beta&t=zruHac6t9WrF1TaZ_oTyvXfKjQSv-OG912tnM9v5BPs","country":"UK","category":"Marketing Sales & Regulatory Affairs","cost":310.221,"imp":7159.0,"clk":176.0,"ctr":2.4584439167481493,"cpc":1.7626193181818182,"reach":1581.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHzmaoEHKThzA/image-shrink_1280/B56ZzAEwKSHUAo-/0/1772748997594/English41200x1200PNG?e=1778680800&v=beta&t=rJ85viBYW6DSxBihgJgr1nFqbL_SVo5QtuIW6UnUtc8","country":"USA","category":"Engineering","cost":283.45257142857145,"imp":4960.0,"clk":59.0,"ctr":1.189516129032258,"cpc":4.804280871670702,"reach":1323.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEfHeD-MLyAoA/image-shrink_1280/B56Z00AchrJsAc-/0/1774694025558/English21280x720PNG?e=1778680800&v=beta&t=hmbfz4LRy-l7Ep7YyygIea4jYNqc5azveQwQ31fcvE4","country":"USA","category":"Engineering","cost":275.1434285714286,"imp":7376.0,"clk":55.0,"ctr":0.7456616052060738,"cpc":5.002607792207793,"reach":1571.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEvDSikrBZfGQ/image-shrink_20/B56Z00CRP1HkAo-/0/1774694503656/German1440x275PNG?e=1778680800&v=beta&t=l1M0UqXDXxu3dPF5j0enpnb7L-XJDuija3xlco169kA","country":"Germany","category":"Marketing & Sales","cost":272.70285714285717,"imp":7558.0,"clk":112.0,"ctr":1.4818735115109818,"cpc":2.4348469387755105,"reach":2997.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHKOhq9ZGYAjw/image-shrink_1280/B56Z00AcaaKcAc-/0/1774694025106/English21200x1200PNG?e=1778680800&v=beta&t=p_uJH8xl5abi8XTPmygx8Qbxc0FIPGKkmq263IIYm58","country":"India","category":"IT & Data","cost":268.4068571428572,"imp":365127.0,"clk":4128.0,"ctr":1.1305655292542047,"cpc":0.06502104097452935,"reach":225067.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHzmaoEHKThzA/image-shrink_1280/B56ZzAEwKSHUAo-/0/1772748997594/English41200x1200PNG?e=1778680800&v=beta&t=rJ85viBYW6DSxBihgJgr1nFqbL_SVo5QtuIW6UnUtc8","country":"USA","category":"Finance","cost":251.68614285714284,"imp":3854.0,"clk":52.0,"ctr":1.3492475350285418,"cpc":4.840118131868132,"reach":1142.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGfODq1EDe-3Q/image-shrink_1280/B56Z00AcbxKgAc-/0/1774694025176/English2720x1280PNG?e=1778680800&v=beta&t=zruHac6t9WrF1TaZ_oTyvXfKjQSv-OG912tnM9v5BPs","country":"USA","category":"Healthcare","cost":242.62514285714286,"imp":8837.0,"clk":31.0,"ctr":0.3507977820527328,"cpc":7.8266175115207375,"reach":1655.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGfODq1EDe-3Q/image-shrink_1280/B56Z00AcbxKgAc-/0/1774694025176/English2720x1280PNG?e=1778680800&v=beta&t=zruHac6t9WrF1TaZ_oTyvXfKjQSv-OG912tnM9v5BPs","country":"USA","category":"Marketing & Sales","cost":242.56757142857145,"imp":8020.0,"clk":39.0,"ctr":0.486284289276808,"cpc":6.219681318681319,"reach":1844.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQElC1V2lfscTw/image-shrink_1280/B56Z00CRcSKsAc-/0/1774694504452/German720x1280PNG?e=1778680800&v=beta&t=nmJQ1kFfGOv-GmFAi7Eqz5q7sW6hCRxIVoPWI77YV8s","country":"Germany","category":"Marketing & Sales","cost":230.83242857142855,"imp":6119.0,"clk":82.0,"ctr":1.3400882497140056,"cpc":2.8150296167247384,"reach":2647.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHKOhq9ZGYAjw/image-shrink_1280/B56Z00AcaaKcAc-/0/1774694025106/English21200x1200PNG?e=1778680800&v=beta&t=p_uJH8xl5abi8XTPmygx8Qbxc0FIPGKkmq263IIYm58","country":"USA","category":"Engineering","cost":224.15671428571426,"imp":5417.0,"clk":44.0,"ctr":0.8122577072180174,"cpc":5.094470779220779,"reach":1298.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEfHeD-MLyAoA/image-shrink_1280/B56Z00AchrJsAc-/0/1774694025558/English21280x720PNG?e=1778680800&v=beta&t=hmbfz4LRy-l7Ep7YyygIea4jYNqc5azveQwQ31fcvE4","country":"USA","category":"Marketing & Sales","cost":221.13471428571427,"imp":5038.0,"clk":66.0,"ctr":1.3100436681222707,"cpc":3.350525974025974,"reach":1004.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFK2rzIo05nPA/image-shrink_1280/B56Z00AcXwK4Ac-/0/1774694025488/English21920x1080PNG?e=1778680800&v=beta&t=22WQE7kiFklUEDwQC6CbUyky7cW1ns9buqCWQQP91UA","country":"India","category":"Finance","cost":220.55814285714288,"imp":270900.0,"clk":3710.0,"ctr":1.3695090439276485,"cpc":0.05944963419329997,"reach":103811.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFK2rzIo05nPA/image-shrink_1280/B56Z00AcXwK4Ac-/0/1774694025488/English21920x1080PNG?e=1778680800&v=beta&t=22WQE7kiFklUEDwQC6CbUyky7cW1ns9buqCWQQP91UA","country":"India","category":"IT & Data","cost":219.5467142857143,"imp":309245.0,"clk":3276.0,"ctr":1.0593542336982005,"cpc":0.06701670155241585,"reach":193577.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEfHeD-MLyAoA/image-shrink_1280/B56Z00AchrJsAc-/0/1774694025558/English21280x720PNG?e=1778680800&v=beta&t=hmbfz4LRy-l7Ep7YyygIea4jYNqc5azveQwQ31fcvE4","country":"USA","category":"Finance","cost":213.03571428571428,"imp":6636.0,"clk":45.0,"ctr":0.6781193490054249,"cpc":4.734126984126984,"reach":1661.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFK2rzIo05nPA/image-shrink_1280/B56Z00AcXwK4Ac-/0/1774694025488/English21920x1080PNG?e=1778680800&v=beta&t=22WQE7kiFklUEDwQC6CbUyky7cW1ns9buqCWQQP91UA","country":"USA","category":"Marketing & Sales","cost":207.07685714285714,"imp":7225.0,"clk":49.0,"ctr":0.6782006920415226,"cpc":4.226058309037901,"reach":1586.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGo2Npn6PCaKQ/image-shrink_1280/B56Z00BmDUJwAg-/0/1774694326742/French1280x720png?e=1778680800&v=beta&t=EZJEe7FAPP45dA_eSK9AtS4LgbMzNUs1WCKOQFitIYg","country":"France","category":"Marketing & Sales","cost":206.6037142857143,"imp":12274.0,"clk":191.0,"ctr":1.556134919341698,"cpc":1.0816948391922214,"reach":5950.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFTto_SLLl_cA/image-shrink_1280/B56Z1J7iKWKYAc-/0/1775061836988/KENVUE42774_StaticBanners_1200x1200-Frenchjpg?e=1778680800&v=beta&t=NCXG_jASHJymboVl_DlBYR2BrY4p1sj9wx6BmTKGtTA","country":"France","category":"Marketing & Sales","cost":206.43257142857144,"imp":13232.0,"clk":180.0,"ctr":1.3603385731559856,"cpc":1.1468476190476191,"reach":6111.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGfODq1EDe-3Q/image-shrink_1280/B56Z00AcbxKgAc-/0/1774694025176/English2720x1280PNG?e=1778680800&v=beta&t=zruHac6t9WrF1TaZ_oTyvXfKjQSv-OG912tnM9v5BPs","country":"USA","category":"Finance","cost":204.74357142857144,"imp":3783.0,"clk":46.0,"ctr":1.2159661644197728,"cpc":4.450947204968944,"reach":1133.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGfODq1EDe-3Q/image-shrink_1280/B56Z00AcbxKgAc-/0/1774694025176/English2720x1280PNG?e=1778680800&v=beta&t=zruHac6t9WrF1TaZ_oTyvXfKjQSv-OG912tnM9v5BPs","country":"India","category":"IT & Data","cost":204.61257142857144,"imp":271953.0,"clk":3089.0,"ctr":1.1358580342926903,"cpc":0.06623909725754984,"reach":169836.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQG_kcR6loaWmQ/image-shrink_1280/B56Z1J7uIiGwAg-/0/1775061885722/KENVUE42774_StaticBanners_1200x1200-Frenchjpg?e=1778680800&v=beta&t=o6LJW3f9-0d-ghSzJpnZEoLR94jxDgzK_mdQ8khF7xs","country":"France","category":"Engineering","cost":197.37814285714288,"imp":8722.0,"clk":122.0,"ctr":1.3987617518917679,"cpc":1.6178536299765809,"reach":4225.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHA1_t8ber9RA/image-shrink_1280/B56Z00BmDAJIAc-/0/1774694326684/French720x900png?e=1778680800&v=beta&t=lkHMjGSQKp2u3eduRzt7eu4C5ZSBlGBah1-k3tFAB_c","country":"France","category":"Engineering","cost":194.6532857142857,"imp":12402.0,"clk":150.0,"ctr":1.209482341557813,"cpc":1.2976885714285713,"reach":4607.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHKOhq9ZGYAjw/image-shrink_1280/B56Z00AcaaKcAc-/0/1774694025106/English21200x1200PNG?e=1778680800&v=beta&t=p_uJH8xl5abi8XTPmygx8Qbxc0FIPGKkmq263IIYm58","country":"USA","category":"Finance","cost":192.37914285714288,"imp":5393.0,"clk":41.0,"ctr":0.7602447617281661,"cpc":4.692174216027875,"reach":1370.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEHXsmXteq-EQ/image-shrink_1280/B56Z00BmLpJgAc-/0/1774694327253/French720x1280png?e=1778680800&v=beta&t=CinhZbrkuIoKDrqLkF8qUyRGp0pXQ6W9WaAFkOhTsD4","country":"France","category":"Marketing & Sales","cost":187.21657142857146,"imp":12844.0,"clk":188.0,"ctr":1.4637184677670507,"cpc":0.9958328267477206,"reach":5987.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFK2rzIo05nPA/image-shrink_1280/B56Z00AcXwK4Ac-/0/1774694025488/English21920x1080PNG?e=1778680800&v=beta&t=22WQE7kiFklUEDwQC6CbUyky7cW1ns9buqCWQQP91UA","country":"UK","category":"Marketing Sales & Regulatory Affairs","cost":186.78285714285713,"imp":9600.0,"clk":86.0,"ctr":0.8958333333333334,"cpc":2.171893687707641,"reach":1824.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHKOhq9ZGYAjw/image-shrink_1280/B56Z00AcaaKcAc-/0/1774694025106/English21200x1200PNG?e=1778680800&v=beta&t=p_uJH8xl5abi8XTPmygx8Qbxc0FIPGKkmq263IIYm58","country":"USA","category":"Healthcare","cost":173.14757142857144,"imp":4878.0,"clk":36.0,"ctr":0.7380073800738007,"cpc":4.8096547619047625,"reach":1034.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHENhamLV5OQQ/image-shrink_1280/B56Z00BmDHJ8Ag-/0/1774694326682/French768x1024png?e=1778680800&v=beta&t=3e9Jard5bN07h893bmr-QsbJ-e-1h-JQ4rigN2eqJOU","country":"France","category":"Marketing & Sales","cost":169.27485714285714,"imp":10969.0,"clk":164.0,"ctr":1.4951226182879023,"cpc":1.0321637630662022,"reach":4953.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHzmaoEHKThzA/image-shrink_1280/B56ZzAEwKSHUAo-/0/1772748997594/English41200x1200PNG?e=1778680800&v=beta&t=rJ85viBYW6DSxBihgJgr1nFqbL_SVo5QtuIW6UnUtc8","country":"USA","category":"Healthcare","cost":166.99414285714286,"imp":4637.0,"clk":39.0,"ctr":0.8410610308389044,"cpc":4.281901098901099,"reach":932.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEfHeD-MLyAoA/image-shrink_1280/B56Z00AchrJsAc-/0/1774694025558/English21280x720PNG?e=1778680800&v=beta&t=hmbfz4LRy-l7Ep7YyygIea4jYNqc5azveQwQ31fcvE4","country":"USA","category":"Healthcare","cost":163.68614285714284,"imp":4600.0,"clk":32.0,"ctr":0.6956521739130435,"cpc":5.115191964285714,"reach":884.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHKOhq9ZGYAjw/image-shrink_1280/B56Z00AcaaKcAc-/0/1774694025106/English21200x1200PNG?e=1778680800&v=beta&t=p_uJH8xl5abi8XTPmygx8Qbxc0FIPGKkmq263IIYm58","country":"UK","category":"Marketing Sales & Regulatory Affairs","cost":160.35385714285715,"imp":5439.0,"clk":74.0,"ctr":1.3605442176870748,"cpc":2.1669440154440154,"reach":1304.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHzmaoEHKThzA/image-shrink_1280/B56ZzAEwKSHUAo-/0/1772748997594/English41200x1200PNG?e=1778680800&v=beta&t=rJ85viBYW6DSxBihgJgr1nFqbL_SVo5QtuIW6UnUtc8","country":"UK","category":"Marketing Sales & Regulatory Affairs","cost":159.038,"imp":6980.0,"clk":61.0,"ctr":0.8739255014326647,"cpc":2.6071803278688526,"reach":1601.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHKOhq9ZGYAjw/image-shrink_1280/B56Z00AcaaKcAc-/0/1774694025106/English21200x1200PNG?e=1778680800&v=beta&t=p_uJH8xl5abi8XTPmygx8Qbxc0FIPGKkmq263IIYm58","country":"USA","category":"Marketing & Sales","cost":145.45928571428573,"imp":4483.0,"clk":49.0,"ctr":1.093018068257863,"cpc":2.968556851311954,"reach":1089.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGo2Npn6PCaKQ/image-shrink_1280/B56Z00BmDUJwAg-/0/1774694326742/French1280x720png?e=1778680800&v=beta&t=EZJEe7FAPP45dA_eSK9AtS4LgbMzNUs1WCKOQFitIYg","country":"France","category":"Engineering","cost":134.97085714285714,"imp":8089.0,"clk":97.0,"ctr":1.1991593522067003,"cpc":1.3914521354933727,"reach":4002.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHKOhq9ZGYAjw/image-shrink_1280/B56Z00AcaaKcAc-/0/1774694025106/English21200x1200PNG?e=1778680800&v=beta&t=p_uJH8xl5abi8XTPmygx8Qbxc0FIPGKkmq263IIYm58","country":"India","category":"R&D","cost":133.692,"imp":179074.0,"clk":2022.0,"ctr":1.1291421423545573,"cpc":0.06611869436201781,"reach":78549.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGfODq1EDe-3Q/image-shrink_1280/B56Z00AcbxKgAc-/0/1774694025176/English2720x1280PNG?e=1778680800&v=beta&t=zruHac6t9WrF1TaZ_oTyvXfKjQSv-OG912tnM9v5BPs","country":"India","category":"R&D","cost":133.48057142857144,"imp":180631.0,"clk":2010.0,"ctr":1.112765804319303,"cpc":0.06640824449182658,"reach":71976.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHGMuC1ga0N8g/image-shrink_1280/B56Z00C1jrH0Ac-/0/1774694652361/Portuguese720x900PNG?e=1778680800&v=beta&t=nkCDIGa8hk4nM51deS9mPy6KqKYPd9TS39qcK7WC5lQ","country":"Brazil","category":"Finance","cost":129.33914285714286,"imp":176337.0,"clk":2278.0,"ctr":1.2918445930235856,"cpc":0.05677749905932523,"reach":108288.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEfHeD-MLyAoA/image-shrink_1280/B56Z00AchrJsAc-/0/1774694025558/English21280x720PNG?e=1778680800&v=beta&t=hmbfz4LRy-l7Ep7YyygIea4jYNqc5azveQwQ31fcvE4","country":"India","category":"Finance","cost":126.03014285714286,"imp":130356.0,"clk":1597.0,"ctr":1.2251066310718342,"cpc":0.07891680830127919,"reach":58832.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEHXsmXteq-EQ/image-shrink_1280/B56Z00BmLpJgAc-/0/1774694327253/French720x1280png?e=1778680800&v=beta&t=CinhZbrkuIoKDrqLkF8qUyRGp0pXQ6W9WaAFkOhTsD4","country":"France","category":"Engineering","cost":119.37400000000001,"imp":7236.0,"clk":90.0,"ctr":1.2437810945273633,"cpc":1.3263777777777779,"reach":3083.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHzmaoEHKThzA/image-shrink_1280/B56ZzAEwKSHUAo-/0/1772748997594/English41200x1200PNG?e=1778680800&v=beta&t=rJ85viBYW6DSxBihgJgr1nFqbL_SVo5QtuIW6UnUtc8","country":"India","category":"R&D","cost":115.51057142857142,"imp":175841.0,"clk":1926.0,"ctr":1.0953076927451506,"cpc":0.05997433615190624,"reach":75553.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHYeZ2_XOr19g/image-shrink_1280/B56Z3PFYQQKIAg-/0/1777295787238/KENVUE42774_StaticBanners_AlwaysOn-720x1280_Frenchjpg?e=1778680800&v=beta&t=8ug5hY_Mddltc261XShnkmWEH2mPsd4WdEGXoQUMQ_o","country":"France","category":"Marketing & Sales","cost":104.30828571428572,"imp":5805.0,"clk":102.0,"ctr":1.757105943152455,"cpc":1.0226302521008404,"reach":2932.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHzmaoEHKThzA/image-shrink_1280/B56ZzAEwKSHUAo-/0/1772748997594/English41200x1200PNG?e=1778680800&v=beta&t=rJ85viBYW6DSxBihgJgr1nFqbL_SVo5QtuIW6UnUtc8","country":"India","category":"Finance","cost":103.80528571428573,"imp":135158.0,"clk":1660.0,"ctr":1.228192189881472,"cpc":0.06253330464716007,"reach":60774.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEIBOQyt67ayw/image-shrink_1280/B56Z00DFZBHwAc-/0/1774694717266/Portuguese1000x750PNG?e=1778680800&v=beta&t=Yk6lZzTriiGCeoAGUOjyCMDU-lpSXCDv7r4KkrwILNA","country":"Brazil","category":"R&D","cost":101.891,"imp":9162.0,"clk":142.0,"ctr":1.5498799388779743,"cpc":0.7175422535211268,"reach":2941.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEfHeD-MLyAoA/image-shrink_1280/B56Z00AchrJsAc-/0/1774694025558/English21280x720PNG?e=1778680800&v=beta&t=hmbfz4LRy-l7Ep7YyygIea4jYNqc5azveQwQ31fcvE4","country":"India","category":"R&D","cost":83.61242857142858,"imp":109590.0,"clk":1263.0,"ctr":1.1524774158226117,"cpc":0.06620144780002263,"reach":53052.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFNG5676EOXcQ/image-shrink_1280/B56Z00D2rGGsAg-/0/1774694919107/Spanish720x1280PNG?e=1778680800&v=beta&t=yABMZDKdtrIKRH8b4RBI0lFQ-A2d17E9071xeEkhWUY","country":"Colombia","category":"Procurement","cost":83.43142857142857,"imp":178172.0,"clk":971.0,"ctr":0.5449790090474373,"cpc":0.08592320141238781,"reach":56314.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFWopOfSW7urQ/image-shrink_1280/B56Z00C1prKwAc-/0/1774694652752/Portuguese1000x750PNG?e=1778680800&v=beta&t=2UCexVME2dJ7NoabDyqHJospJSpUtnPDAlIhVeU5mNI","country":"Brazil","category":"Finance","cost":80.58942857142857,"imp":121574.0,"clk":1522.0,"ctr":1.2519124154835737,"cpc":0.0529496902571804,"reach":78150.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHKOhq9ZGYAjw/image-shrink_1280/B56Z00AcaaKcAc-/0/1774694025106/English21200x1200PNG?e=1778680800&v=beta&t=p_uJH8xl5abi8XTPmygx8Qbxc0FIPGKkmq263IIYm58","country":"India","category":"Finance","cost":65.67157142857144,"imp":89599.0,"clk":1102.0,"ctr":1.2299244411209946,"cpc":0.05959307752138969,"reach":42242.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQGfODq1EDe-3Q/image-shrink_1280/B56Z00AcbxKgAc-/0/1774694025176/English2720x1280PNG?e=1778680800&v=beta&t=zruHac6t9WrF1TaZ_oTyvXfKjQSv-OG912tnM9v5BPs","country":"India","category":"Finance","cost":62.764857142857146,"imp":80409.0,"clk":1007.0,"ctr":1.2523473740501685,"cpc":0.06232855724216201,"reach":43790.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQF99tG3DZIxQw/image-shrink_1280/B56Z00D2EPKkAc-/0/1774694916598/Spanish720x9001PNG?e=1778680800&v=beta&t=Z2Da8LhKmoRF_k_l37T1oFVJGWfsltOtDOXn8GG0ZjQ","country":"Colombia","category":"Procurement","cost":46.708,"imp":140823.0,"clk":774.0,"ctr":0.5496261264140091,"cpc":0.06034625322997416,"reach":53775.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFE78hr3JDRMg/image-shrink_1280/B56Z00D2T_JsAc-/0/1774694917614/Spanish1280x720PNG?e=1778680800&v=beta&t=V41vC4_Gssod_j9qIDdsN4rGtiFurPwwyTGqzW5G1Qo","country":"Colombia","category":"Procurement","cost":43.07114285714286,"imp":138150.0,"clk":719.0,"ctr":0.5204487875497648,"cpc":0.0599042320683489,"reach":44656.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQF1pvCcDQ_0GQ/image-shrink_1280/B56Z00D2LnGsAc-/0/1774694917100/Spanish1000x750PNG?e=1778680800&v=beta&t=RN8feQXfN_dEGHI3dpGKDFb-A9b6HJmw0tyNQqzgXlI","country":"Colombia","category":"Procurement","cost":39.675285714285714,"imp":108342.0,"clk":571.0,"ctr":0.5270347602960993,"cpc":0.06948386289717288,"reach":44491.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQHGMuC1ga0N8g/image-shrink_1280/B56Z00C1jrH0Ac-/0/1774694652361/Portuguese720x900PNG?e=1778680800&v=beta&t=nkCDIGa8hk4nM51deS9mPy6KqKYPd9TS39qcK7WC5lQ","country":"Brazil","category":"R&D","cost":36.806,"imp":5701.0,"clk":42.0,"ctr":0.7367128573934397,"cpc":0.8763333333333333,"reach":1861.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFWopOfSW7urQ/image-shrink_1280/B56Z00C1prKwAc-/0/1774694652752/Portuguese1000x750PNG?e=1778680800&v=beta&t=2UCexVME2dJ7NoabDyqHJospJSpUtnPDAlIhVeU5mNI","country":"Brazil","category":"R&D","cost":35.545,"imp":3970.0,"clk":40.0,"ctr":1.0075566750629723,"cpc":0.888625,"reach":1650.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFfdWG2b3h3HA/image-shrink_1280/B56Z00C1u5GYAc-/0/1774694653147/Portuguese720x1280PNG?e=1778680800&v=beta&t=Zf3tFrvkku6O4clsjJOE1XjwJLlIn8YJjXFGHu8Ayzc","country":"Brazil","category":"R&D","cost":35.35785714285714,"imp":4429.0,"clk":35.0,"ctr":0.7902461052156242,"cpc":1.0102244897959183,"reach":1503.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFudGRV70mAxw/image-shrink_800/B56Z3PF3h4IIAg-/0/1777295915439/KENVUE42774_StaticBanners_AlwaysOn-720x1280_Frenchjpg?e=1778680800&v=beta&t=XdUWLQkLwjrfT_2HmAHSf5JhyLNtCN9ulUy9aaeu-DM","country":"France","category":"Engineering","cost":23.077,"imp":1778.0,"clk":13.0,"ctr":0.7311586051743533,"cpc":1.7751538461538463,"reach":1012.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQEv7OVSeu3a_g/image-shrink_800/B56Z3PEh3mIIAg-/0/1777295564477/KENVUE42774_StaticBanners_AlwaysOn-720x1280_Germanjpg?e=1778680800&v=beta&t=NTvOSd-cbJecwzQ20je5_WCsryAkct6KST-zujIqS-I","country":"Germany","category":"Marketing & Sales","cost":22.316285714285716,"imp":637.0,"clk":4.0,"ctr":0.6279434850863422,"cpc":5.579071428571429,"reach":447.0},{"img":"https://media.licdn.com/dms/image/v2/D5610AQFzxpIds9pRRg/image-shrink_1280/B56Z3PEti6IUAc-/0/1777295612316/KENVUE42774_StaticBanners_AlwaysOn-1080x1920_Germanjpg?e=1778680800&v=beta&t=17-Z5OECDPGo-Clolfe0Z-ZiU-p_a4MC9P66wmPM8iI","country":"Germany","category":"Marketing & Sales","cost":18.851142857142857,"imp":482.0,"clk":5.0,"ctr":1.0373443983402488,"cpc":3.7702285714285715,"reach":337.0}],"totals":{"meta":{"count":29,"cost":28012.72857142857,"imp":35935117.0,"clk":422527.0,"reach":12500091.0},"google":{"count":19,"cost":19951.70157142857,"imp":16462555.0,"clk":1172297.0,"reach":0},"linkedin":{"count":69,"cost":20328.877571428573,"imp":6030150.0,"clk":70440.0,"reach":2802949.0}}};
+
+function crFmtNum(n){if(n>=1000000)return (n/1000000).toFixed(1)+'M';if(n>=1000)return (n/1000).toFixed(1)+'K';return Math.round(n).toLocaleString()}
+function crFmtMoney(n){if(n>=1000)return '$'+(n/1000).toFixed(1)+'K';return '$'+n.toFixed(0)}
+
+function crIsTopPerformer(ad,channel){
+  const minImp=channel==='meta'?50000:channel==='google'?100000:5000;
+  if(ad.imp<minImp)return false;
+  const all=DATA[channel].filter(a=>a.imp>=minImp).sort((a,b)=>b.ctr-a.ctr);
+  const threshold=all[Math.floor(all.length*0.2)];
+  return ad.ctr>=threshold.ctr;
+}
+
+function crImgError(el,country,cat){
+  el.parentNode.innerHTML="<div class='cr-placeholder'>Image unavailable<br><small>"+country+" · "+cat+"</small></div>";
+}
+function crRenderCard(ad,channel){
+  const img=ad.img||'';
+  const isTop=crIsTopPerformer(ad,channel);
+  const placeholder="<div class='cr-placeholder'>Image unavailable<br><small>"+ad.country+" · "+ad.category+"</small></div>";
+  return `
+    <div class="cr-card${isTop?' top':''}" onclick='crOpenModal(${JSON.stringify(ad).replace(/'/g,"&apos;")}, "${channel}")'>
+      <div class="cr-card-img">
+        ${isTop?'<div class="cr-badge">★ Top performer</div>':''}
+        ${img?`<img src="${img}" alt="" loading="lazy" onerror="crImgError(this,'${ad.country.replace(/'/g,"\\'")}','${ad.category.replace(/'/g,"\\'")}')">`:placeholder}
+      </div>
+      <div class="cr-card-meta">
+        <div class="cr-card-tags">
+          <span class="country">${ad.country}</span>
+          <span>${ad.category}</span>
+        </div>
+        <div class="cr-card-stats">
+          <div class="cr-card-stat"><div class="v">${crFmtMoney(ad.cost)}</div><div class="l">Spend</div></div>
+          <div class="cr-card-stat"><div class="v">${crFmtNum(ad.imp)}</div><div class="l">Impressions</div></div>
+          <div class="cr-card-stat"><div class="v">${crFmtNum(ad.clk)}</div><div class="l">Clicks</div></div>
+          <div class="cr-card-stat hi"><div class="v">${ad.ctr.toFixed(2)}%</div><div class="l">CTR</div></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function crRenderTopGrid(containerId,ads,channel){
+  document.getElementById(containerId).innerHTML=ads.map(a=>crRenderCard(a,channel)).join('');
+}
+
+const crTopMetaCTR=[...DATA.meta].filter(a=>a.imp>=10000).sort((a,b)=>b.ctr-a.ctr).slice(0,6);
+crRenderTopGrid('cr-top-meta-ctr',crTopMetaCTR,'meta');
+const crTopGoogleClk=[...DATA.google].sort((a,b)=>b.clk-a.clk).slice(0,6);
+crRenderTopGrid('cr-top-google-clk',crTopGoogleClk,'google');
+const crTopLinkedinCTR=[...DATA.linkedin].filter(a=>a.imp>=5000).sort((a,b)=>b.ctr-a.ctr).slice(0,6);
+crRenderTopGrid('cr-top-linkedin-ctr',crTopLinkedinCTR,'linkedin');
+
+function crOpenModal(ad,channel){
+  if(typeof ad==='string')ad=JSON.parse(ad.replace(/&apos;/g,"'"));
+  const m=document.getElementById('cr-modal');
+  document.getElementById('cr-modal-img').src=ad.img||'';
+  document.getElementById('cr-modal-img').alt=ad.country+' '+ad.category;
+  document.getElementById('cr-modal-tags').innerHTML=`
+    <span class="country">${ad.country}</span>
+    <span>${ad.category}</span>
+    <span style="background:#eff7ee;color:#00754a">${channel.charAt(0).toUpperCase()+channel.slice(1)}</span>
+  `;
+  document.getElementById('cr-modal-stats').innerHTML=`
+    <div class="cr-modal-stat"><div class="l">Spend</div><div class="v">${crFmtMoney(ad.cost)}</div></div>
+    <div class="cr-modal-stat"><div class="l">Impressions</div><div class="v">${crFmtNum(ad.imp)}</div></div>
+    <div class="cr-modal-stat"><div class="l">Clicks</div><div class="v">${crFmtNum(ad.clk)}</div></div>
+    <div class="cr-modal-stat"><div class="l">CTR</div><div class="v" style="color:#00754a">${ad.ctr.toFixed(2)}%</div></div>
+    <div class="cr-modal-stat"><div class="l">CPC</div><div class="v">$${ad.cpc.toFixed(3)}</div></div>
+    ${ad.reach?`<div class="cr-modal-stat"><div class="l">Reach</div><div class="v">${crFmtNum(ad.reach)}</div></div>`:''}
+  `;
+  m.classList.add('open');
+}
+document.addEventListener('click',function(e){
+  if(e.target && e.target.closest && e.target.closest('#cr-modal-close')){
+    var m=document.getElementById('cr-modal');
+    if(m) m.classList.remove('open');
+    return;
+  }
+  if(e.target && e.target.id==='cr-modal') e.target.classList.remove('open');
+});
+
+</script>
+
+
+<div class="cr-modal" id="cr-modal">
+  <div class="cr-modal-box">
+    <button class="cr-modal-close" id="cr-modal-close">×</button>
+    <div class="cr-modal-img-wrap"><img id="cr-modal-img" src="" alt=""/></div>
+    <div class="cr-modal-body">
+      <div class="cr-modal-tags" id="cr-modal-tags"></div>
+      <div class="cr-modal-stats" id="cr-modal-stats"></div>
+    </div>
+  </div>
+</div>
+
+<div class="img-modal" id="img-modal" onclick="this.classList.remove('open')">
+  <button class="img-modal-close">×</button>
+  <img id="img-modal-img" src="" alt="">
+</div>
+
+</body>
+</html>
